@@ -1,0 +1,19 @@
+html, body {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: small;
+      }
+ 
+      form {
+        margin-bottom: 10px;
+      }
+      .form
+      {
+        text-align: center;
+        margin-left:25%;
+        margin-right:25%;
+      }
+      #map {
+        width: 100%;
+        height: 450px;
+        border: 1px solid black;
+      }
