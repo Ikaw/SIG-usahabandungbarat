@@ -5,7 +5,7 @@
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<title>GIS | Potensi Usaha Bandung Barat </title>
+		<title>SIG | Potensi Usaha Bandung Barat </title>
 		<meta name="description" content="Worthy a Bootstrap-based, Responsive HTML5 Template">
 		<meta name="author" content="htmlcoder.me">
 		<!-- Begin Maps -->
@@ -126,7 +126,7 @@
 
 							<!-- name-and-slogan -->
 							<div class="site-name-and-slogan smooth-scroll">
-								<div class="site-name"><a href="#banner">GIS</a></div>
+								<div class="site-name"><a href="#banner">SIG</a></div>
 								<div class="site-slogan">Potensi Usaha Kabupaten <strong>Bandung Barat</strong></div>
 							</div>
 
@@ -216,7 +216,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 id="about" class="title text-center">Website <span>GIS</span> Potensi Usaha Kabupaten Bandung Barat</h1>
+						<h1 id="about" class="title text-center">Website <span>SIG</span> Potensi Usaha Kabupaten Bandung Barat</h1>
 						<p class="lead text-center">Website Geographics Information System data usaha di Kabupaten Bandung Barat</p>
 						<div class="space"></div>
 						<div class="row">
@@ -225,7 +225,7 @@
 								<div class="space"></div>
 							</div>
 							<div class="col-md-6">
-								<p>Geographics Information System (GIS) Potensi Usaha Kabupaten Bandung Barat merupakan website yang menampilkan data usaha yang ada di Kabupaten Bandung Barat yang disajikan dalam Maps dengan data-data usaha yang telah terintegrasi pada database kami.</p>
+								<p>Sistem Informasi Geografis (SIG) Potensi Usaha Kabupaten Bandung Barat merupakan website yang menampilkan data usaha yang ada di Kabupaten Bandung Barat yang disajikan dalam Maps dengan data-data usaha yang telah terintegrasi pada database kami.</p>
 								<p>Pengunjung dapat mendaftarkan diri sebagai pengusaha untuk menampilkan data usaha yang dimiliki (berupa marker pada maps) sehingga diharpakan setelah dipublikasikan pada website ini, data usaha yang didaftarkan akan dengan mudah dilihat oleh orang banyak.</p>
 								<p>Pada Website Ini terdapat beberapa konten diantaranya :  </p>
 								<ul class="list-unstyled">
