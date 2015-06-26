@@ -26,7 +26,7 @@ function header_web()
 { ?>
   <div class="row">
     <div class="col-md-2 col-md-offset-2 text-center">
-      <img src="../admin/img/logo.png" class="img-responsive" alt="Responsive image">
+      <img src="../dinas/img/logo.png" class="img-responsive" alt="Responsive image">
     </div>
     <div class="col-md-7">
       <h1>
@@ -99,7 +99,6 @@ function dashboard(){?>
         <h2>Dinas Perindustrian Kabupaten Bandung Barat</h2>
       </div>
     </div>
-<?php}
 
 
 <?php } 

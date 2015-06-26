@@ -133,7 +133,7 @@
                               <?php echo $data['tgl_lahir'];?>
                             </td>
                             <td>
-                              <img src="../admin/gambar/<?php echo $data['foto_ktp'];?>" width="70px" height="70px">
+                              <img src="../dinas/gambar/<?php echo $data['foto_ktp'];?>" width="70px" height="70px">
                             </td>
                             <td>
                               <?php echo $data['no_telp'];?>
