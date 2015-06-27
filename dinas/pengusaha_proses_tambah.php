@@ -43,7 +43,7 @@
             $no_telp = $_POST['no_telp'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $namafilebaru="../admin/gambar/".$foto_ktp;
+            $namafilebaru="../dinas/gambar/".$foto_ktp;
             if(move_uploaded_file($_FILES['foto_ktp']['tmp_name'], $namafilebaru)==true)
             {
               $sql = "INSERT INTO pemilik_usaha(nama, no_ktp, alamat, tpt_lahir, tgl_lahir, foto_ktp, no_telp, email, password) 
