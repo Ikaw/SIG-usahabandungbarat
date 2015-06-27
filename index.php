@@ -72,6 +72,7 @@
 	          request.send(null);
 	        }
 	        function doNothing() {}
+	        
 	        //]]>
 	      </script>
     	<!-- End Maps-->

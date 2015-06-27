@@ -3,6 +3,7 @@
     $user="root";
     $password="";
     $database="db_sigbb";
+    $host="localhost";
 
     // Start XML file, create parent node
     $dom = new DOMDocument("1.0");
@@ -10,7 +11,7 @@
     $parnode = $dom->appendChild($node); 
 
     // Opens a connection to a MySQL server
-    $connection=mysql_connect (localhost, $user, $password);
+    $connection=mysql_connect ($host, $user, $password);
     if (!$connection) {  die('Not connected : ' . mysql_error());} 
 
     // Set the active MySQL database
@@ -37,7 +38,7 @@
       $newnode->setAttribute("address", $row['alamat_usaha']);  
       $newnode->setAttribute("lat", $row['lat']);  
       $newnode->setAttribute("lng", $row['lng']);
-      $newnode->setAttribute("category", $row['id_sektor']);  
+        
     } 
 
     echo $dom->saveXML();
