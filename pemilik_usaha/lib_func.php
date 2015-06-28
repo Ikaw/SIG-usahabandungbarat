@@ -98,7 +98,7 @@ function header_web()
 	<ul class="nav nav-tabs">
 		<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Beranda</a></li>
 		<li><a href="index.php?app=about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  About</a></li>
-		<li class="dropdown pull-right"><a href="#.php"><span class="glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+		<li class="dropdown pull-right"><a href="logout.php"><span class="glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
 	</ul>
 <?php } 
 

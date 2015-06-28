@@ -166,6 +166,7 @@
   <div class="container-fluid">
     <?php footer_web();?>
   </div>
+
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.3.min.js"></script>

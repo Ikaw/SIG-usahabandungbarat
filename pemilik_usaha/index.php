@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +39,7 @@
     <td align="center" width="80%">
       <div class="jumbotron">
         <!<div class="container">
-          <h1>Selamat Datang</h1>
+          <h1>Selamat Datang <?php echo $_SESSION['nama'];?></h1>
           <p>Halaman Utama Untuk Pengusaha</p>
         <!</div>
       </div>
