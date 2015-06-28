@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2015 at 02:25 PM
+-- Generation Time: Jun 28, 2015 at 09:21 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -41,6 +41,13 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `skala` enum('MIKRO','KECIL','MENENGAH') NOT NULL,
   `dihapus` char(1) DEFAULT 'T'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `data_usaha`
+--
+
+INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `gambar_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`) VALUES
+(1, 'inkfinite co', 'T-shirt & Jeans', '', '', 'distro baju dan selana jeans berkualitas', -6.7, -12, 1, 2, 6, 'KECIL', 'T');
 
 -- --------------------------------------------------------
 
@@ -287,6 +294,18 @@ CREATE TABLE IF NOT EXISTS `pemilik_usaha` (
   `dihapus` char(1) NOT NULL DEFAULT 'T',
   `aktivasi` enum('DEACTIVE','ACTIVE') NOT NULL DEFAULT 'DEACTIVE'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemilik_usaha`
+--
+
+INSERT INTO `pemilik_usaha` (`no_ktp`, `nama`, `alamat`, `tpt_lahir`, `tgl_lahir`, `foto_ktp`, `no_telp`, `email`, `password`, `dihapus`, `aktivasi`) VALUES
+('3210070304940001', 'tresna gumelar', 'cikijing, kab.majalengka', 'majalengka', '0000-00-00', 'IMG_5342.jpg', '081908190819', 'admin4@gmail.com', 'admin123', 'T', 'DEACTIVE'),
+('3210071405940021', 'aldy ahmad', 'cibiru, bandung', 'bandung', '1994-05-14', 'IMG_3807.JPG', '085708570857', 'admin@gmail.com', 'admin123', 'T', 'DEACTIVE'),
+('3210072009940021', 'bayu rifqi', 'gelatik dalam, bandung', 'ambon', '0000-00-00', 'IMG_5456.jpg', '085308530853', 'admin6@gmail.com', 'admin123', 'T', 'DEACTIVE'),
+('3210072109940001', 'bayu setiaji', 'ujunberung, bandung\r\n', 'bandung', '1994-09-21', 'IMG_4749.jpg', '082208220822', 'admin2@gmail.com', 'admin123', 'T', 'DEACTIVE'),
+('3210072212940001', 'bayu fajar', 'banjaran, kab.bandung', 'bandung', '1994-12-22', 'IMG_4781.jpg', '087708770877', 'admin3@gmail.com', 'admin123', 'T', 'DEACTIVE'),
+('3210074105940021', 'ika widya', 'ciwastra, bandung', 'bandung', '0000-00-00', 'asasasasasasasasasasasasas.PNG', '087708770877', 'admin5@gmail.com', 'admin123', 'T', 'DEACTIVE');
 
 -- --------------------------------------------------------
 

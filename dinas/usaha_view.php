@@ -60,7 +60,7 @@
               ?>
               <table class="table table-striped" align="center">
                 <tr>
-                  <td colspan=11 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
+                  <td colspan=12 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
                 </tr>
                 <tr>
                   <td>ID Usaha</td>
