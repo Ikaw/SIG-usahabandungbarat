@@ -30,7 +30,16 @@
               ('$nama','$no_ktp','$alamat','$tpt_lahir','$tgl_lahir','$foto_ktp','$no_telp','$email','$password')";
               $result = mysql_query($sql,$link);
               if ($result) {
-                echo "Data Berhasil disimpan";
+                //select
+                $sql2 = "select nama,email from pemilik_usaha where email='$email' and nama='$nama'";
+                $res=mysql_query($sql2,$link);
+                if(mysql_num_rows($res)==1) // apabila username dan userpass benar
+                {
+                  $data=mysql_fetch_array($res);
+                  session_start();
+                  $_SESSION['nama']=$data['nama']; // isi variabel email
+                  $_SESSION['email']=$data['email']; // isi variabel email
+                  header("Location:pengusaha_tambah_berhasil.php");}
               }
               else {
                 echo "Gagal Broh !!!";

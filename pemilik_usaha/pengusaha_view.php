@@ -34,7 +34,7 @@
           </table>
           <?php
             $link=koneksi_db();
-            $sql  = "SELECT * FROM pemilik_usaha WHERE nama='Ika Widya'";
+            $sql  = "SELECT * FROM pemilik_usaha WHERE nama='Aldi Ahmad'";
             $res  = mysql_query($sql,$link);
 			$data = mysql_fetch_array($res);
               ?>
