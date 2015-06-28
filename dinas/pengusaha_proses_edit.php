@@ -45,9 +45,8 @@
       </div>
       <div class="col-md-9">
         <?php
-        //if (isset($_GET['no_ktp'])) {
           $link = koneksi_db();
-          //$no_ktp = isset($_GET['no_ktp']);
+          
           $no_ktp = $_GET['no_ktp'];
           $nama = $_POST['nama'];
           $alamat = $_POST['alamat'];
@@ -56,8 +55,9 @@
           $no_telp = $_POST['no_telp'];
           $email = $_POST['email'];
           $password = $_POST['password'];
+          //$foto_ktp = $_POST['foto_ktp'];
               
-          $sql = "UPDATE pemilik_usaha SET nama=$nama, alamat=$alamat, tpt_lahir=$tpt_lahir, tgl_lahir=$tgl_lahir, no_telp=$no_telp, email=$email, password=$password WHERE no_ktp='$no_ktp')";
+          $sql = "UPDATE pemilik_usaha SET nama='$nama', alamat='$alamat', tpt_lahir='$tpt_lahir', tgl_lahir='$tgl_lahir', no_telp='$no_telp', email='$email', password='$password' WHERE no_ktp='$no_ktp')";
           $result = mysql_query($sql, $link);
           if ($result) {?>
             <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Diubah !!</div>
@@ -67,7 +67,7 @@
             <div class="alert alert-danger" role="alert">Gagal di Ubah !!</div>
           <?php
           }
-        //}               
+                       
         ?>
       </div>
     </div>

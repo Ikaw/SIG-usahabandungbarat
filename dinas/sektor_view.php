@@ -106,10 +106,12 @@
                         </td>
                         <td>
                               <!--Hapus Data-->
-                              <button class="btn btn-primary" data-toggle="modal" data-target="#hapus">
+                            <a href="javascript:;" data-id="<?php echo $data['id_sektor']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
+                              <button class="btn btn-primary" >
                                 <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
                               </button>
-                              <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            </a>
+                              <div class="modal fade" id="modal-konfirmasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -121,7 +123,7 @@
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                                      <a href="sektor_hapus.php?id_sektor=<?php echo $data['id_sektor'];?>"><button type="submit" class="btn btn-primary" id="Simpan">Ya, Hapus</button></a>
+                                      <a href="javascript:;" id="hapus-true" class="btn btn-danger">Ya, Hapus</a>
                                     </div>
                                   </div>
                                   <!-- /.modal-content -->
@@ -159,6 +161,28 @@
     <script src="js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        
+            $(document).ready(function(){
+
+            $('#modal-konfirmasi').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+
+            // Untuk mengambil nilai dari data-id="" yang telah kita tempatkan pada link hapus
+            var id_sektor = div.data('id')
+            //var nama_kec = div.data('id')
+
+            var modal = $(this)
+
+            // Mengisi atribut href pada tombol ya yang kita berikan id hapus-true pada modal .
+            modal.find('#hapus-true').attr("href","sektor_hapus.php?id_sektor="+id_sektor);
+
+            })
+
+            });
+
+        
+    </script>
   
 </body>
 </html>

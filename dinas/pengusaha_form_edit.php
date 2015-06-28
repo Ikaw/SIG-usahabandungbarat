@@ -96,7 +96,7 @@
                     <label for="foto_ktp" class="col-sm-4 control-label">File KTP</label>
                     <div class="col-sm-6">
                       <img src="../admin/gambar/<?php echo $data['foto_ktp'];?>" width="70px" height="70px">
-                      <input type='hidden' class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?=$data['tgl_lahir']?>"/>
+                      <input type='hidden' class="form-control" id="foto_ktp" name="foto_ktp" value="<?=$data['foto_ktp']?>"/>
                     </div>
                   </div>
                   <div class="form-group">

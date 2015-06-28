@@ -82,7 +82,7 @@
               $id_desa = $data['id_desa'];
               ?>
 
-              <form method="POST" action="desa_proses_edit.php?id_desa=<?=$id_desa?>" class="form-horizontal">
+              <form method="POST" action="desa_proses_edit.php?id_desa=<?=$id_desa?>&&id_kec=<?=$data['id_kec']?>" class="form-horizontal">
                 <div class="panel panel-primary">
                   <div class="panel-heading">
                     <h3 class="panel-title">Edit Data Desa</h3>
@@ -95,23 +95,24 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="nama_kec" class="col-sm-4 control-label">Nama Desa </label>
+                  <label for="nama_desa" class="col-sm-4 control-label">Nama Desa </label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" id="nama_kec" name="nama_kec" value="<?=$data['nama_kec']?>">
+                    <input type="text" class="form-control" id="nama_desa" name="nama_desa" value="<?=$data['nama_desa']?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="kecamatan" class="col-sm-4 control-label">Nama Kecamatan</label>
-                  <div class="col-sm-8">
+                  <div class="col-sm-6">
                     <select name="kecamatan" class="form-control">
                     <?php
+                    error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
                     $link = koneksi_db();
-                    $sql="SELECT id_kec, nama_kec FROM kecamatan where dihapus='T'";
-                    $kec = mysql_query($sql, $link);
+                    $sql1="SELECT * FROM kecamatan where dihapus='T'";
+                    $kec = mysql_query($sql1, $link);
                     while ($keca=mysql_fetch_array($kec)) {
                     ?>
-                      <option value="<?=$keca[id_kec]?>" <?php if ($_POST['kecamatan']=="$keca['id_kec']") echo "checked";?>>
-                      <?=$keca['nama_kec']?>
+                      <option value="<?=$data['id_kec'];?>" <?php if ($_POST['kecamatan']==$keca['id_kec']) echo "checked";?>>
+                      <?=$keca['nama_kec'];?>
                       </option>
                     <?php }?>
                     </select>

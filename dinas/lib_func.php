@@ -7,8 +7,12 @@
     <title>Sistem Informasi Geografis Potensi Usaha</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/css.css">
+    <link href="../admin/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../admin/css/css.css">
+    <link rel="stylesheet" href="../admin/css/peta.css">
+    <!--link rel="stylesheet" href="../admin/css/maps.css"-->
+
+    
     
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -17,6 +21,108 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+    <script type="text/javascript" >
+ 
+    (function() {
+ 
+    // Mendefinisikan variabel global
+    var map, geocoder, marker, infowindow;
+ 
+    window.onload = function() {
+ 
+      // Membuat map baru
+      var options = {  
+        zoom: 11,  
+        center: new google.maps.LatLng(-6.913785, 107.407542),  
+        mapTypeId: google.maps.MapTypeId.ROADMAP  
+      };  
+ 
+      map = new google.maps.Map(document.getElementById('map'), options);
+ 
+      // Mengambil referensi ke form HTML
+      var form = document.getElementById('addressForm');
+ 
+      // Menangkap event submit form
+      /*form.onsubmit = function() {
+        // Mendapatkan alamat dari input teks
+        var address = document.getElementById('address').value;
+ 
+        // Membuat panggilan Geocoder 
+        getCoordinates(address);
+ 
+        // Menghindari form dari page submit
+        return false;
+ 
+      }*/
+ 
+    }
+ 
+    // Membuat sebuah fungsi yang mengembalikan koordinat alamat
+    function getCoordinates() {
+      var address = document.getElementById('alamat').value;
+      // Mengecek apakah terdapat 'geocoded object'. Jika tidak maka buat satu.
+      if(!geocoder) {
+        geocoder = new google.maps.Geocoder();  
+      }
+ 
+      // Membuat objek GeocoderRequest
+      var geocoderRequest = {
+        address: address
+      }
+ 
+      // Membuat rekues Geocode 
+      geocoder.geocode(geocoderRequest, function(results, status) {
+ 
+        // Mengecek apakah ststus OK sebelum proses
+        if (status == google.maps.GeocoderStatus.OK) {
+
+          document.getElementById('Lat').value = results[0].geometry.location.A;
+          document.getElementById('Lng').value = results[0].geometry.location.F;
+
+          // Menengahkan peta pada lokasi 
+          map.setCenter(results[0].geometry.location);
+ 
+          // Mengecek apakah terdapat objek marker
+          if (!marker) {
+            // Membuat objek marker dan menambahkan ke peta
+            marker = new google.maps.Marker({
+              map: map
+            });
+          }
+ 
+          // Menentukan posisi marker ke lokasi returned location
+          marker.setPosition(results[0].geometry.location);
+ 
+          // Mengecek apakah terdapat InfoWindow object
+          if (!infowindow) {
+            // Membuat InfoWindow baru
+            infowindow = new google.maps.InfoWindow();
+          }
+ 
+          // membuat konten InfoWindow ke alamat
+          // dan posisi yang ditemukan
+          var content = '<strong>' + results[0].formatted_address + '</strong><br />';
+          content += 'Lat: ' + results[0].geometry.location.lat() + '<br />';
+          content += 'Lng: ' + results[0].geometry.location.lng();
+ 
+          // Menambahkan konten ke InfoWindow
+          infowindow.setContent(content);
+ 
+          // Membuka InfoWindow
+          infowindow.open(map, marker);
+ 
+        } 
+ 
+      });
+ 
+    }
+ 
+  })();
+ 
+  </script>
+
   </head>
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
@@ -26,7 +132,7 @@ function header_web()
 { ?>
   <div class="row">
     <div class="col-md-2 col-md-offset-2 text-center">
-      <img src="../dinas/img/logo.png" class="img-responsive" alt="Responsive image">
+      <img src="../admin/img/logo.png" class="img-responsive" alt="Responsive image">
     </div>
     <div class="col-md-7">
       <h1>
@@ -99,6 +205,7 @@ function dashboard(){?>
         <h2>Dinas Perindustrian Kabupaten Bandung Barat</h2>
       </div>
     </div>
+<?php}
 
 
 <?php } 
@@ -261,9 +368,9 @@ function tambah_desa() {?>
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <label for="nama_kec" class="col-sm-4 control-label">Nama Desa</label>
+      <label for="nama_desa" class="col-sm-4 control-label">Nama Desa</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="nama_kec" name="nama_kec" placeholder="Nama Desa">
+        <input type="text" class="form-control" id="nama_desa" name="nama_desa" placeholder="Nama Desa">
       </div>
     </div>
     <div class="form-group">
@@ -290,15 +397,145 @@ function tambah_desa() {?>
   </div>
   </form>
 <?php }
+
+function tambah_usaha(){?>
+  <form method="POST" action="usaha_proses_tambah.php" class="form-horizontal">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Tambah Data Usaha</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="nama_usaha" class="col-sm-4 control-label">Nama Usaha</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" placeholder="Nama Usaha Anda">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="produk_utama" class="col-sm-4 control-label">Produk Utama</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="produk_utama" name="produk_utama" placeholder="Produk Utama">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="deskripsi_usaha" class="col-sm-4 control-label">Deskripsi Usaha</label>
+      <div class="col-sm-8">
+        <textarea type="text" class="form-control" id="deskripsi_usaha" name="deskripsi_usaha"  placeholder="Deskripsi Usaha"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="skala" class="col-sm-4 control-label">Skala Usaha</label>
+      <div class="col-sm-8">
+        <select name="skala" class="form-control">
+          <option>--Pilih Skala--</option>
+          <option value="Mikro">Mikro</option>
+          <option value="Kecil">Kecil</option>
+          <option value="Menengah">Menengah</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nama_sektor" class="col-sm-4 control-label">Sektor</label>
+      <div class="col-sm-8">
+        <select name="id_sektor" class="form-control">
+        <?php
+        $link = koneksi_db();
+        $sql="SELECT id_sektor, nama_sektor FROM sektor_usaha where dihapus='T'";
+        $result = mysql_query($sql, $link);
+        while ($data=mysql_fetch_array($result)) {
+          ?>
+          <option value="<?php echo "$data[id_sektor]";?>">
+            <?php echo "$data[nama_sektor]";?>
+          </option>
+        <?php 
+        }?>
+        </select>
+      </div>
+    </div>
+    <div>
+        <label for="alamat">Lokasi:</label>
+        <input type="text" name="alamat" id="alamat" />
+        <input type="button" id="addressButton" value="Cari Koordinat" onclick="getCoordinates()"/>          
+      </div>
+    <div class="form-group">
+      <label for="kecamatan" class="col-sm-4 control-label">Kecamatan</label>
+      <div class="col-sm-8" >
+        <select name="kecamatan" id="kecamatan" class="form-control">
+          <option>--Pilih Kecamatan--</option>
+          <?php
+            mysql_connect("localhost","root","");
+            mysql_select_db("db_sigbb");
+            //mengambil nama-nama kecamatan yang ada di database
+            $kecamatan = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec");
+            while($p=mysql_fetch_array($kecamatan)){
+              echo "<option value=\"$p[id_kec]\">$p[nama_kec]</option>\n";
+            }
+          ?>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="desa" class="col-sm-4 control-label">Desa</label>
+      <div class="col-sm-8">
+        <select name="desa" id="desa" class="form-control">
+          <option>--Pilih Desa--</option>
+            <?php
+            //mengambil nama-nama desa yang ada di database
+            $desa = mysql_query("SELECT * FROM desa ORDER BY nama_desa");
+            while($p=mysql_fetch_array($kecamatan)){
+              echo "<option value=\"$p[id_desa]\">$p[nama_desa]</option>\n";
+            }
+            ?>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Lat" class="col-sm-4 control-label">Latitude</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="Lat" name="Lat">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Lng" class="col-sm-4 control-label">Longitude</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="Lng" name="Lng">
+      </div>
+    </div>
+    <div class="span8">
+      <div id="map"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+    <button type="submit" class="btn btn-primary" id="Simpan">Simpan</button>
+  </div>
+  </form>
+<?php
+}
 ?>
 
 
 
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="../admin/js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../admin/js/bootstrap.min.js"></script>
+    <script src="../admin/js/bootstrap-datepicker.js"></script>
+    <!--<script>
+      $('#datetimepicker').datetimepicker({
+        format: 'dd-mm-yyyy',
+        autoclose: true,
+        minView: 2
+      });
+    </script>
+    <script type="text/javascript">
+            $(function () {
+                $('#datepicker').datepicker({
+                  format: 'yyyy-mm-dd'
+                });
+            });
+        </script>-->
     
   </body>
 </html>

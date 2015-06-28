@@ -17,6 +17,28 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        
+            $(document).ready(function(){
+
+            $('#modal-konfirmasi').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+
+            // Untuk mengambil nilai dari data-id="" yang telah kita tempatkan pada link hapus
+            var id_kec = div.data('id')
+
+            var modal = $(this)
+
+            // Mengisi atribut href pada tombol ya yang kita berikan id hapus-true pada modal .
+            modal.find('#hapus-true').attr("href","kecamatan_hapus.php?id_kec="+id_kec);
+
+            })
+
+            });
+
+        
+    </script>
+  
   </head>
 <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
@@ -89,9 +111,7 @@
                       </tr>
                     </thead>
                     <?php
-                    $i=0;
                     while($data=mysql_fetch_array($res)){
-                      $i++;
                       ?>
                       <tbody>
                         <tr>
@@ -106,22 +126,26 @@
                         </td>
                         <td>
                               <!--Hapus Data-->
-                              <button class="btn btn-primary" data-toggle="modal" data-target="#hapus">
-                                <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
-                              </button>
-                              <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    
+                                <a href="javascript:;" data-id="<?php echo $data['id_kec']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
+                                  <button class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+                                  </button>
+                                </a>
+                              
+                              <div class="modal fade" id="modal-konfirmasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                       <h4 class="modal-title" id="myModalLabel">Hapus Data Kecamatan</h4>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" data-id="<?php echo $data['nama_kec']?>">
                                       Apakah anda yakin akan menghapus kecamatan <?php echo $data['nama_kec'];?> ??
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                                      <a href="kecamatan_hapus.php?id_kec=<?php echo $data['id_kec'];?>"><button type="submit" class="btn btn-primary" id="Simpan">Ya, Hapus</button></a>
+                                      <a href="javascript:;" id="hapus-true" class="btn btn-danger">Ya, Hapus</a>
                                     </div>
                                   </div>
                                   <!-- /.modal-content -->
@@ -159,6 +183,28 @@
     <script src="js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        
+            $(document).ready(function(){
+
+            $('#modal-konfirmasi').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+
+            // Untuk mengambil nilai dari data-id="" yang telah kita tempatkan pada link hapus
+            var id_kec = div.data('id')
+            var nama_kec = div.data('id')
+
+            var modal = $(this)
+
+            // Mengisi atribut href pada tombol ya yang kita berikan id hapus-true pada modal .
+            modal.find('#hapus-true').attr("href","kecamatan_hapus.php?id_kec="+id_kec);
+
+            })
+
+            });
+
+        
+    </script>
   
 </body>
 </html>
