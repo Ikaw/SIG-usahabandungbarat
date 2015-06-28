@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
@@ -218,7 +221,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h1 id="about" class="title text-center">Website <span>SIG</span> Potensi Usaha Kabupaten Bandung Barat</h1>
-						<p class="lead text-center">Website Geographics Information System data usaha di Kabupaten Bandung Barat</p>
+						<p class="lead text-center">Website Sistem Informasi Geografis data usaha di Kabupaten Bandung Barat</p>
 						<div class="space"></div>
 						<div class="row">
 							<div class="col-md-6">
@@ -777,7 +780,7 @@
 		<!-- ================ -->
 		<div class="section translucent-bg bg-image-2 pb-clear">
 			<div class="container object-non-visible" data-animation-effect="fadeIn">
-				<h1 id="daftar" class="title text-center">Form Pendaftaran Data Pengusaha</h1>
+				<h1 id="daftar" class="title text-center">Pendaftaran Data Pengusaha</h1>
 				<h3 class="text-center">Sebelum mendaftarkan usaha, terlebih dahulu daftarkan diri anda sebagai pengusaha. Kami akan mengecek validasi data anda terlebih dahulu sebelum anda dapat mendaftarkan usaha anda pada website kami.</h3>
 				<div class="space"></div>
 				<div class="row">
@@ -868,15 +871,15 @@
 		<!-- Section Login -->
 		<div class="section">
 		    <div class="container" data-animation-effect="fadeIn">
-			    <h1 id="login" class="title text-center">Halaman Login Pengusaha</h1>
+			    <h1 id="login" class="title text-center">Login Pengusaha</h1>
 
 		        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 		            <div style="padding-top:30px" class="panel-body" >
 		            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-			            <form action="cek_login.php" id="loginform" class="form-horizontal" role="form">
-			                <div style="margin-bottom: 25px" class="input-group">
+			            <form action="cek_login.php" id="loginform" class="form-horizontal" role="form" method="post">	
+			            	<div style="margin-bottom: 25px" class="input-group">
 			                	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-			                    <input id="login-username" type="text" class="form-control" name="email" placeholder="Email">                                        
+			                    <input id="login-username" type="text" class="form-control" name="email" placeholder="Email" data-error="Bruh, that email address is invalid" required>                                        
 			                </div>
 			                <div style="margin-bottom: 25px" class="input-group">
 			                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -921,16 +924,15 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="footer-content">
-								<p class="large">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel nam magnam natus tempora cumque, aliquam deleniti voluptatibus voluptas. Repellat vel, et itaque commodi iste ab, laudantium voluptas deserunt nobis.</p>
+								<p class="large">Apabila ada pertanyaan seputar website ini, dengan senang hati kami akan layani. Silahkan tulis pertanyaan anda pada form yang kami sediakan</p>
 								<ul class="list-icons">
-									<li><i class="fa fa-map-marker pr-10"></i> One infinity loop, 54100</li>
-									<li><i class="fa fa-phone pr-10"></i> +00 1234567890</li>
-									<li><i class="fa fa-fax pr-10"></i> +00 1234567891 </li>
-									<li><i class="fa fa-envelope-o pr-10"></i> your@email.com</li>
+									<li><i class="fa fa-map-marker pr-10"></i> Jalan Dipatiukur, Coblong, Kota Bandung</li>
+									<li><i class="fa fa-phone pr-10"></i> +62 812345678910</li>
+									<li><i class="fa fa-envelope-o pr-10"></i> mail@sigbb.com</li>
 								</ul>
 								<ul class="social-links">
-									<li class="facebook"><a target="_blank" href="https://www.facebook.com/pages/HtmlCoder/714570988650168"><i class="fa fa-facebook"></i></a></li>
-									<li class="twitter"><a target="_blank" href="https://twitter.com/HtmlcoderMe"><i class="fa fa-twitter"></i></a></li>
+									<li class="facebook"><a target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+									<li class="twitter"><a target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
 									<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
 									<li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
 									<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
@@ -944,21 +946,21 @@
 							<div class="footer-content">
 								<form role="form" id="footer-form">
 									<div class="form-group has-feedback">
-										<label class="sr-only" for="name2">Name</label>
-										<input type="text" class="form-control" id="name2" placeholder="Name" name="name2" required>
+										<label class="sr-only" for="nama2">Nama</label>
+										<input type="text" class="form-control" id="name2" placeholder="Nama" name="name2" required>
 										<i class="fa fa-user form-control-feedback"></i>
 									</div>
 									<div class="form-group has-feedback">
-										<label class="sr-only" for="email2">Email address</label>
-										<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2" required>
+										<label class="sr-only" for="email2">Alamat Email</label>
+										<input type="email" class="form-control" id="email2" placeholder="Alamat Email" name="email2" required>
 										<i class="fa fa-envelope form-control-feedback"></i>
 									</div>
 									<div class="form-group has-feedback">
-										<label class="sr-only" for="message2">Message</label>
-										<textarea class="form-control" rows="8" id="message2" placeholder="Message" name="message2" required></textarea>
+										<label class="sr-only" for="pesan2">Pesan atau Pertanyaan</label>
+										<textarea class="form-control" rows="8" id="message2" placeholder="Pesan atau Pertanyaan" name="message2" required></textarea>
 										<i class="fa fa-pencil form-control-feedback"></i>
 									</div>
-									<input type="submit" value="Send" class="btn btn-default">
+									<input type="submit" value="Kirim" class="btn btn-default">
 								</form>
 							</div>
 						</div>
