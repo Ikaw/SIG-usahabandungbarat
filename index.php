@@ -23,6 +23,31 @@ session_start();
 	    </style>
 		<!-- Load Maps -->
 		<script type="text/javascript">
+		//Custom Icon
+		var customIcons = {
+			Periklanan: {
+				icon: 'images/icons/Periklanan.png'
+			},
+			Arsitektur: {
+				icon: 'images/icons/Arsitektur.png'
+			},
+			Kerajinan: {
+				icon: 'images/icons/Kerajinan.png'
+			},
+			Fashion: {
+				icon: 'images/icons/Fashion.png'
+			},
+			Video: {
+				icon: 'images/icons/Video.png'
+			},
+			Film: {
+				icon: 'images/icons/Film.png'
+			},
+			Permainan: {
+				icon: 'images/icons/Permainan.png'
+			}
+		};
+
         //<![CDATA[
 	        function load() { //meload map
 	          var map = new google.maps.Map(document.getElementById("map"), {
@@ -39,14 +64,16 @@ session_start();
 	            for (var i = 0; i < markers.length; i++) {
 	              var name = markers[i].getAttribute("name");
 	              var address = markers[i].getAttribute("address");
+	              var type = markers[i].getAttribute("category");
 	              var point = new google.maps.LatLng(
 	                  parseFloat(markers[i].getAttribute("lat")),
 	                  parseFloat(markers[i].getAttribute("lng")));
-	              var html = "<b>" + name + "</b> <br/>" + address+ "</b>";
+	              var html = "<font color='black'><b>" + name + "</b></font><br/><font color='black'>" + address + "</font>";
+	              var icon = customIcons[type] || {};
 	              var marker = new google.maps.Marker({
 	                map: map,
 	                position: point,
-	                icon: 'images/universitas.png' //ganti icon
+	                icon: icon.icon //ganti icon
 	              });
 	              bindInfoWindow(marker, map, infoWindow, html);
 	            }

@@ -42,12 +42,12 @@
                   header("Location:pengusaha_tambah_berhasil.php");}
               }
               else {
-                echo "Gagal Broh !!!";
+                header("Location:pengusaha_tambah_gagal.php");
               }
             }
           }
           else {
-            echo "Penambahan produk gagal karena upload file gambar gagal";
+            header("Location:pengusaha_tambah_gagal.php");
           }
           
 ?>
