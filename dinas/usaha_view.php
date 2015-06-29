@@ -84,30 +84,37 @@
                         $banyakrecord=mysql_num_rows($res);
                         if($banyakrecord>0){
                           ?>
-                          <table class="table table-striped" align="center">
-                            <tr>
-                              <td colspan=11 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
-                            </tr>
-                            <tr>
-                              <td>ID Usaha</td>
-                              <td>Nama Usaha</td>
-                              <td>Produk Utama</td>
-                              <td>Skala Usaha</td>
-                              <td>Alamat</td>
-                              <td>Deskripsi Usaha</td>
-                              <td>Latitude</td>
-                              <td>Longitude</td>
-                              <td>ID Kecamatan</td>
-                              <td>ID Desa</td>
-                              <td>ID Sektor</td>
-                              <td>Dihapus</td>
-                            </tr>
+                          <table class="table table-hover" align="center">
+                            <thead>
+                              <tr>
+                                <td>No KTP</td>
+                                <td>ID Usaha</td>
+                                <td>Nama Usaha</td>
+                                <td>Produk Utama</td>
+                                <td>Skala Usaha</td>
+                                <td>Alamat</td>
+                                <td>Deskripsi Usaha</td>
+                                <td>Latitude</td>
+                                <td>Longitude</td>
+                                <td>ID Kecamatan</td>
+                                <td>ID Desa</td>
+                                <td>ID Sektor</td>
+                                <td>Dihapus</td>
+                                <td>Aktivasi</td>
+                                <td>Aksi</td>
+                              </tr>
+                            </thead>
+                    
                             <?php
                               $i=0;
                               while($data=mysql_fetch_array($res)){
                                 $i++;
                                 ?>
+                                <tbody>
                                 <tr>
+                                  <td>
+                                    <?php echo $data['no_ktp'];?>
+                                  </td>
                                   <td>
                                     <?php echo $data['id_usaha'];?>
                                   </td>
@@ -144,7 +151,51 @@
                                   <td align="center">
                                     <?php echo $data['dihapus'];?>
                                   </td>
+                                  <td align="center">
+                                    <input type="hidden" name="aktivasi" id="aktivasi" value="<?php echo $data['aktivasi'];?>">
+                                    <?php
+                                    
+                                    if ($data['aktivasi']=="DEACTIVE") {
+                                      echo "<a href='usaha_aktivasi.php?id_usaha=".$data['id_usaha']."&& aktivasi=".$data['aktivasi']."'><button type='button' class='btn btn-primary' data-toggle='tooltip' data-placement='right' title='Aktivasi'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span></button></a>";
+                                    } else {
+                                      echo "<a href='usaha_aktivasi.php?id_usaha=".$data['id_usaha']."&& aktivasi=".$data['aktivasi']."'><button type='button' class='btn btn-danger' data-toggle='tooltip' data-placement='right' title='Aktivasi'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button></a>";
+                                    }
+                                    ?>
+                                    
+                                  </td>
+                                  <td>
+                                      <!--Hapus Data-->
+                                    <a href="javascript:;" data-id="<?php echo $data['no_ktp']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
+                                      <button class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+                                      </button>
+                                    </a>
+                                      <div class="modal fade" id="modal-konfirmasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                              <h4 class="modal-title" id="myModalLabel">Hapus Data Pengusaha</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              Apakah anda yakin akan menghapus seluruh data dengan nama <?php echo $data['nama'];?> ??
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                                              <a href="javascript:;" id="hapus-true" class="btn btn-danger">Ya, Hapus</a>
+                                            </div>
+                                          </div>
+                                          <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                      </div>
+
+                                      <!--Ubah Data-->
+                                      <a href="pengusaha_form_edit.php?no_ktp=<?php echo $data['no_ktp'];?>"><button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Ubah"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a>
+                                    </td>
+
                                 </tr>
+                                </tbody>
                                 <?php
                               }?>
                         </table>
@@ -166,7 +217,6 @@
   <div class="container-fluid">
     <?php footer_web();?>
   </div>
-
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.3.min.js"></script>

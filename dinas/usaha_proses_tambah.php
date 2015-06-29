@@ -38,16 +38,18 @@
             $deskripsi_usaha = $_POST['deskripsi_usaha'];
             $skala = $_POST['skala'];
             $id_sektor = $_POST['id_sektor'];
-            $alamat = $_POST['alamat'];
+            $alamat = $_POST['address'];
             $id_kec = $_POST['kecamatan'];
             $id_desa = $_POST['desa'];
-            $lat = $_POST['lat'];
-            $lng = $_POST['lng'];
+            $lat = $_POST['Lat'];
+            $lng = $_POST['Lng'];
+            $no_ktp = $_POST['no_ktp'];
+            echo $nama_usaha.$produk_utama.$deskripsi_usaha.$skala.$id_sektor.$alamat.$id_kec.$id_desa.$lat.$lng;
 
 
-              $sql = "INSERT INTO data_usaha (nama_usaha, produk_utama, alamat_usaha, deskripsi_usaha, lat, lng, id_kec, id_desa, id_sektor, skala) 
+              $sql = "INSERT INTO data_usaha(nama_usaha, produk_utama, alamat_usaha, deskripsi_usaha, lat, lng, id_kec, id_desa, id_sektor, skala,no_ktp) 
               VALUES
-              ('$nama_usaha','$produk_utama','$alamat','$deskripsi_usaha','$lat','$lng','$id_kec','$id_desa','$id_sektor','$skala')";
+              ('$nama_usaha','$produk_utama','$alamat','$deskripsi_usaha','$lat','$lng','$id_kec','$id_desa','$id_sektor','$skala','$no_ktp')";
               $result = mysql_query($sql, $link);
               if ($result) {
                 echo "Data Berhasil disimpan";

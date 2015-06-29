@@ -138,6 +138,13 @@
   })();
  
   </script>
+  <script type="text/javascript">
+    function submitForm(action)
+    {
+        document.getElementById('addressForm').action = action;
+        document.getElementById('addressForm').submit();
+    }
+  </script>
   </head>
 <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
@@ -196,27 +203,45 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <h3 class="text-center">Tambah Data Usaha</h3>
-                <form id="addressForm" action="/">
+                <form id="addressForm" action="usaha_proses_tambah.php" method="POST" class="form-horizontal">
                   <div class="form-group">
-                    <label for="nama_usaha" class="col-sm-4 control-label">Nama Usaha</label>
+                    <label for="no_ktp" class="col-sm-4  control-label">No KTP</label>
+                    <div class="col-sm-6">
+                      <select name="no_ktp" class="form-control">
+                      <?php
+                      $link = koneksi_db();
+                      $sql="SELECT no_ktp, nama FROM pemilik_usaha where dihapus='T'";
+                      $result = mysql_query($sql, $link);
+                      while ($data=mysql_fetch_array($result)) {
+                        ?>
+                        <option value="<?php echo "$data[no_ktp]";?>">
+                          <?php echo "$data[no_ktp]";?> - <?php echo "$data[nama]";?>
+                        </option>
+                      <?php 
+                      }?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="nama_usaha" class="col-sm-4  control-label">Nama Usaha</label>
                     <div class="col-sm-6">
                       <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" placeholder="Nama Usaha Anda">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="produk_utama" class="col-sm-4 control-label">Produk Utama</label>
+                    <label for="produk_utama" class="col-sm-4  control-label">Produk Utama</label>
                     <div class="col-sm-6">
                       <input type="text" class="form-control" id="produk_utama" name="produk_utama" placeholder="Produk Utama">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="deskripsi_usaha" class="col-sm-4 control-label">Deskripsi Usaha</label>
+                    <label for="deskripsi_usaha" class="col-sm-4  control-label">Deskripsi Usaha</label>
                     <div class="col-sm-6">
                       <textarea type="text" class="form-control" id="deskripsi_usaha" name="deskripsi_usaha"  placeholder="Deskripsi Usaha"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="skala" class="col-sm-4 control-label">Skala Usaha</label>
+                    <label for="skala" class="col-sm-4  control-label">Skala Usaha</label>
                     <div class="col-sm-6">
                       <select name="skala" class="form-control">
                         <option>--Pilih Skala--</option>
@@ -227,7 +252,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="nama_sektor" class="col-sm-4 control-label">Sektor</label>
+                    <label for="nama_sektor" class="col-sm-4  control-label">Sektor</label>
                     <div class="col-sm-6">
                       <select name="id_sektor" class="form-control">
                       <?php
@@ -245,7 +270,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="kecamatan" class="col-sm-4 control-label">Kecamatan</label>
+                    <label for="kecamatan" class="col-sm-4  control-label">Kecamatan</label>
                     <div class="col-sm-6" >
                       <select name="kecamatan" id="kecamatan" class="form-control">
                         <option>--Pilih Kecamatan--</option>
@@ -262,7 +287,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="desa" class="col-sm-4 control-label">Desa</label>
+                    <label for="desa" class="col-sm-4  control-label">Desa</label>
                     <div class="col-sm-6">
                       <select name="desa" id="desa" class="form-control">
                         <option>--Pilih Desa--</option>
@@ -277,29 +302,33 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="address" class="col-sm-4 control-label">Lokasi:</label>
-                    <div class="col-sm-6">
+                    <label for="address" class="col-sm-4  control-label">Lokasi:</label>
+                    <div class="col-sm-4">
                       <input type="text" class="form-control" name="address" id="address" />
+                    </div>
+                    <div class="col-sm-2">
                       <input type="button" id="addressButton" value="Cari Koordinat" onclick="getCoordinates(address)" />          
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="Lat" class="col-sm-4 control-label">Latitude</label>
+                    <label for="Lat" class="col-sm-4  control-label">Latitude</label>
                     <div class="col-sm-6">
                       <input type="text" class="form-control" id="Lat" name="Lat">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="Lng" class="col-sm-4 control-label">Longitude</label>
+                    <label for="Lng" class="col-sm-4  control-label">Longitude</label>
                     <div class="col-sm-6">
                       <input type="text" class="form-control" id="Lng" name="Lng">
                     </div>
                   </div>
-                  <div class="span8">
+                  <div class="col-sm-10  form-group">
                     <div id="map"></div>
                   </div>
-                  <div>
-                    <button type="submit" class="btn btn-primary" id="Simpan">Simpan</button>
+                  <div class="col-sm-10  form-group" align="center">
+                    <!a href="usaha_proses_tambah.php">
+                      <button type="submit" class ="btn btn-primary" id="Simpan" onclick="submitForm('usaha_proses_tambah.php')" value="Simpan">Simpan</button>
+                    <!/a>
                   </div>
                 </form>
               </div>
@@ -314,9 +343,9 @@
   </div>
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="../admin/js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../admin/js/bootstrap.min.js"></script>
   
 </body>
 </html>
