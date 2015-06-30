@@ -24,27 +24,7 @@ session_start();
 	    <!-- Custom Icon di Folder images/icons-->
 	    <script type="text/javascript" src="js/customicon.js"></script>
 
-	    <!-- Onclick Kecamatan -->
-	    <script type="text/javascript">
-		    var htmlobjek;
-		    $(document).ready(function(){
-		      //apabila terjadi event onchange terhadap object <select id=kecamatan>
-		      $("#kecamatan").change(function(){
-		        var kecamatan = $("#kecamatan").val();
-		        $.ajax({
-		            url: "../dinas_industri/ambildesa.php",
-		            data: "kecamatan="+kecamatan,
-		            cache: false,
-		            success: function(msg){
-		                //jika data sukses diambil dari server kita tampilkan
-		                //di <select id=kota>
-		                $("#desa").html(msg);
-		            }
-		        });
-		      });
-		    });
-		</script>
-		
+	    
 		<!-- Load Maps -->
 		<script type="text/javascript">
 		//<![CDATA[
