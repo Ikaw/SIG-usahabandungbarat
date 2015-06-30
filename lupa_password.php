@@ -63,6 +63,10 @@
 				                </form>
 				                <p>Masukkan kode yang telah kami kirim melalui email mail@sig-usahabb.com</p>
 				                <form action="#" id="kodepassform" class="form-horizontal" role="form" method="post">
+					                <div style="margin-bottom: 25px" class="input-group">
+					                	<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					                    <input id="login-username" type="text" class="form-control" name="email" placeholder="Email" data-error="Bruh, that email address is invalid" required>                                        
+					                </div>
 					                <div class="form-group">
 					                <div class="col-sm-8">
 				                          <div class='input-group'>
