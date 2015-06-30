@@ -33,11 +33,13 @@
           <table class="table table-striped" align="center">
             <tr>
               <td align="left" width="300px">
-                <a href="usaha_form_tambah.php"><button type="button" class="btn btn-primary">Tambah</button></a>
-                <a href="usaha_hapus.php"><button type="button" class="btn btn-primary">Hapus</button></a>
-                <a href="usaha_edit.php"><button type="button" class="btn btn-primary">Edit</button></a>
+                <a href="usaha_form_tambah.php">
+                  <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#tambah">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
+                </button>
+                </a>
               </td>
-              <td align="center">
+              <td align="right">
                 <div class="row">
                   <div class="col-lg-8">
                     <div class="input-group">
@@ -59,7 +61,7 @@
             $banyakrecord=mysql_num_rows($res);
             if($banyakrecord>0){
               ?>
-              <table class="table table-striped" align="center">
+              <table class="table table-hover" align="center">
                 <tr>
                   <td colspan=11 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
                 </tr>
@@ -75,6 +77,7 @@
                   <td>ID Kecamatan</td>
                   <td>ID Desa</td>
                   <td>ID Sektor</td>
+                  <td>Aksi</td>
                 </tr>
                 <?php
                   $i=0;
@@ -114,6 +117,41 @@
                       </td>
                       <td>
                         <?php echo $data['id_sektor'];?>
+                      </td>
+                      <td>
+                          <!--Hapus Data-->
+                            <a href="javascript:;" data-id="<?php echo $data['id_usaha']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
+                              <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+                              </button>
+                            </a>
+                              <div class="modal fade" id="modal-konfirmasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title" id="myModalLabel">Hapus Data Usaha</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      Apakah anda yakin akan menghapus Usaha <?php echo $data['nama_usaha'];?> ??
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                                      <a href="javascript:;" id="hapus-true" class="btn btn-danger">Ya, Hapus</a>
+                                    </div>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
+                              <br>
+                              <br>
+                              <!--Ubah Data-->
+                              <a href="usaha_form_edit.php?id_usaha=<?php echo $data['id_usaha'];?>">
+                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Ubah">
+                                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
+                              </a>
                       </td>
                     </tr>
                     <?php

@@ -98,7 +98,7 @@ function header_web()
 	<ul class="nav nav-tabs">
 		<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Beranda</a></li>
 		<li><a href="index.php?app=about"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  About</a></li>
-		<li class="dropdown pull-right"><a href="logout.php"><span class="glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+		<li class="dropdown pull-right"><a href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
 	</ul>
 <?php } 
 
@@ -112,8 +112,9 @@ function footer_web()
 <?php
 function menu(){ ?>
 <div class="list-group" align="center">
-  <h3>..........</h3>
-  <a href="pengusaha_view.php" class="list-group-item">Data Diri</a>
+  <div align="left" class="font1"><h5>Selamat Datang</h5></div>
+  <div align="right"><h4>------</h4></div>
+  <a href="index.php" class="list-group-item">Data Diri</a>
   <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
 </div>
 

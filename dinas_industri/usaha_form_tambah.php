@@ -326,9 +326,7 @@
                     <div id="map"></div>
                   </div>
                   <div class="col-sm-10  form-group" align="center">
-                    <!a href="usaha_proses_tambah.php">
                       <button type="submit" class ="btn btn-primary" id="Simpan" onclick="submitForm('usaha_proses_tambah.php')" value="Simpan">Simpan</button>
-                    <!/a>
                   </div>
                 </form>
               </div>
