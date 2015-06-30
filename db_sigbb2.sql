@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2015 at 11:26 AM
+-- Generation Time: Jun 30, 2015 at 05:53 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -23,6 +23,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `nip` varchar(30) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`nip`, `password`) VALUES
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `data_usaha`
 --
 
@@ -31,7 +49,6 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `nama_usaha` varchar(30) NOT NULL,
   `produk_utama` varchar(20) NOT NULL,
   `alamat_usaha` varchar(50) NOT NULL,
-  `gambar_usaha` varchar(30) NOT NULL,
   `deskripsi_usaha` varchar(100) NOT NULL,
   `lat` float NOT NULL,
   `lng` float NOT NULL,
@@ -39,17 +56,33 @@ CREATE TABLE IF NOT EXISTS `data_usaha` (
   `id_desa` int(11) NOT NULL,
   `id_sektor` int(11) NOT NULL,
   `skala` enum('MIKRO','KECIL','MENENGAH') NOT NULL,
-  `dihapus` char(1) DEFAULT 'T'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `dihapus` char(1) DEFAULT 'T',
+  `aktivasi` enum('ACTIVE','DEACTIVE') NOT NULL DEFAULT 'DEACTIVE',
+  `no_ktp` varchar(30) NOT NULL,
+  `tgl_daftar` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_usaha`
 --
 
-INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `gambar_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`) VALUES
-(1, 'inkfinite co', 'T-shirt & Jeans', 'Jalan Mana Aja Boleh', '', 'distro baju dan selana jeans berkualitas', -6.96682, 107.444, 1, 2, 6, 'KECIL', 'T'),
-(2, 'Toko Kerajinan Khas Bandung', 'Angklung', 'Jalana mana aja boleh', '', 'fuck you', -6.92045, 107.472, 4, 4, 4, 'MIKRO', 'T'),
-(3, 'Fuck You Konsultan', 'Jasa Arsitektur', 'Teuing Atuh ', '', 'Jasa Konsultasi Bandunan', -6.91399, 107.46, 4, 4, 2, 'MIKRO', 'T');
+INSERT INTO `data_usaha` (`id_usaha`, `nama_usaha`, `produk_utama`, `alamat_usaha`, `deskripsi_usaha`, `lat`, `lng`, `id_kec`, `id_desa`, `id_sektor`, `skala`, `dihapus`, `aktivasi`, `no_ktp`, `tgl_daftar`) VALUES
+(1, 'Ika Bakery', 'Cake Pop', 'Cihampelas Bandung Barat', 'Menyediakan berbagai macam kue manis, enak dan bergizi', -6.94794, 107.497, 7, 21, 16, 'KECIL', 'T', 'DEACTIVE', '3273225102940007', '0000-00-00 00:00:00'),
+(2, 'Tatoti Research', 'Jasa Research', 'Batu Jajar Galanggang Bandung Barat', 'Menerima jasa untuk pengembangan riset', -6.90963, 107.488, 1, 4, 15, 'MENENGAH', 'T', 'DEACTIVE', '3204051405940005', '0000-00-00 00:00:00'),
+(3, 'IKA HARPA4', 'Musik Angklung', 'Cikalong Wetan Mandalamukti Bandung Barat', 'Menerima jasa permainan musik angklung untuk diberbagai acara', -6.75146, 107.453, 4, 14, 10, 'MIKRO', 'T', 'DEACTIVE', '3273225102940007', '0000-00-00 00:00:00'),
+(4, 'Oyaaa', 'Jasa Periklanan', 'Cililin Karyamukti Bandung Barat', 'Menerima jasa di bidang periklanan', -7.03405, 107.471, 10, 37, 1, 'MENENGAH', 'T', 'DEACTIVE', '3210070304940001', '0000-00-00 00:00:00'),
+(5, 'Amaze-archi', 'Desain bangunan', 'Cipatat Gunungmasigit Bandung Barat', 'Menerima jasa pembuatan desain bangunan apapun', -6.83439, 107.435, 13, 45, 2, 'MENENGAH', 'T', 'DEACTIVE', '3210070304940001', '0000-00-00 00:00:00'),
+(6, 'Goods Art', 'Kerajinan Rotan', 'Cipeundeuy Margaluyu Bandung Barat', 'Menyediakan berbagai macam barang yang terbuat dari rotan', -6.7799, 107.308, 15, 58, 3, 'MIKRO', 'T', 'DEACTIVE', '3210072009940021', '0000-00-00 00:00:00'),
+(7, 'Maju Jaya', 'Tudung Saji', 'Cipongkor Cijambu Bandung Barat', 'Menyediakan berbagai macam kerajinan', -6.93064, 107.341, 2, 66, 4, 'KECIL', 'T', 'DEACTIVE', '3210072009940021', '0000-00-00 00:00:00'),
+(8, 'Sketch You', 'Desain UI Web', 'Cisarua Padaasih Bandung Barat', 'Menerima berbagai macam desain web', -6.84005, 107.559, 5, 80, 5, 'MENENGAH', 'T', 'DEACTIVE', '3210072109940001', '0000-00-00 00:00:00'),
+(9, 'Distro Terkenal', 'Kaos Distro Keren', 'Gununghalu Celak Bandung Barat', 'Tersedia berbagai macam kaos kaos dengan desain keren', -7.02554, 107.355, 8, 87, 6, 'KECIL', 'T', 'DEACTIVE', '3210072109940001', '0000-00-00 00:00:00'),
+(10, 'Matahari 5', 'Video Mapping', 'Lembang Setiabudi Bandung Barat', 'Menyediakan jasa pembuatan video mapping', -6.84978, 107.589, 9, 95, 7, 'KECIL', 'T', 'DEACTIVE', '3210072212940001', '0000-00-00 00:00:00'),
+(11, 'Film Art', 'Jasa Fotografi', 'Ngamprah Pakuhaji Bandung Barat', 'Menerima jasa pemotretan dan pembuatan film', -6.84932, 107.53, 11, 118, 8, 'MENENGAH', 'T', 'DEACTIVE', '3210072212940001', '0000-00-00 00:00:00'),
+(12, 'Learning Fun', 'Permainan Interaktif', 'Padalarang Ciburuy Bandung Barat', 'Menyediakan berbagai macam permainan interaktif', -6.82815, 107.465, 14, 122, 9, 'MENENGAH', 'T', 'DEACTIVE', '3210072212940001', '0000-00-00 00:00:00'),
+(13, 'Art Show', 'Jasa Pertunjukan', 'Parongpong Cihanjuang Bandung Barat', 'Menerima jasa pertunjukan untuk acara apapun', -6.84867, 107.57, 16, 133, 11, 'KECIL', 'T', 'DEACTIVE', '3210070304940001', '0000-00-00 00:00:00'),
+(14, 'Print You Out', 'Jasa Percetakan', 'Rongga Cicadas Bandung Barat', 'Menerima jasa percetakan', -6.98647, 107.296, 3, 143, 12, 'KECIL', 'T', 'DEACTIVE', '3204051405940005', '0000-00-00 00:00:00'),
+(15, 'Serve Your Computer', 'Jasa Perbaikan Kompu', 'Saguling Cikande Bandung Barat', 'Menerima jasa reparasi komputer', -6.87404, 107.403, 12, 158, 13, 'KECIL', 'T', 'DEACTIVE', '3273225102940007', '0000-00-00 00:00:00'),
+(16, 'Indotivi', 'Tayangan Televisi', 'Sindangkerta Cikadu Bandung Barat', 'Menyediakan berbagai macam acara hiburan televisi', -6.9948, 107.417, 6, 147, 14, 'MENENGAH', 'T', 'DEACTIVE', '3210072009940021', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -240,7 +273,9 @@ CREATE TABLE IF NOT EXISTS `galeri` (
 `id_gambar` int(11) NOT NULL,
   `nama_gambar` varchar(50) NOT NULL,
   `id_usaha` int(11) NOT NULL,
-  `dihapus` char(1) DEFAULT 'T'
+  `dihapus` char(1) DEFAULT 'T',
+  `ukuran_gambar` varchar(200) NOT NULL,
+  `tipe_gambar` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -294,21 +329,22 @@ CREATE TABLE IF NOT EXISTS `pemilik_usaha` (
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
   `dihapus` char(1) NOT NULL DEFAULT 'T',
-  `aktivasi` enum('DEACTIVE','ACTIVE') NOT NULL DEFAULT 'DEACTIVE'
+  `aktivasi` enum('DEACTIVE','ACTIVE') NOT NULL DEFAULT 'DEACTIVE',
+  `tgl_daftar` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilik_usaha`
 --
 
-INSERT INTO `pemilik_usaha` (`no_ktp`, `nama`, `alamat`, `tpt_lahir`, `tgl_lahir`, `foto_ktp`, `no_telp`, `email`, `password`, `dihapus`, `aktivasi`) VALUES
-('3204051405940005', 'Aldi Ahmad', 'Jalan Cibiru Hilir No.17', 'Bandung', '2015-06-30', 'DSC_0617.JPG', '085724639200', 'aldikedua@gmail.com', 'aldi', 'T', 'ACTIVE'),
-('3210070304940001', 'tresna gumelar', 'cikijing, kab.majalengka', 'majalengka', '0000-00-00', 'IMG_5342.jpg', '081908190819', 'admin4@gmail.com', 'admin123', 'T', 'DEACTIVE'),
-('3210071405940021', 'aldy ahmad', 'cibiru, bandung', 'bandung', '1994-05-14', 'IMG_3807.JPG', '085708570857', 'admin@gmail.com', 'admin123', 'T', 'DEACTIVE'),
-('3210072009940021', 'bayu rifqi', 'gelatik dalam, bandung', 'ambon', '0000-00-00', 'IMG_5456.jpg', '085308530853', 'admin6@gmail.com', 'admin123', 'T', 'DEACTIVE'),
-('3210072109940001', 'bayu setiaji', 'ujunberung, bandung\r\n', 'bandung', '1994-09-21', 'IMG_4749.jpg', '082208220822', 'admin2@gmail.com', 'admin123', 'T', 'DEACTIVE'),
-('3210072212940001', 'bayu fajar', 'banjaran, kab.bandung', 'bandung', '1994-12-22', 'IMG_4781.jpg', '087708770877', 'admin3@gmail.com', 'admin123', 'T', 'DEACTIVE'),
-('3210074105940021', 'ika widya', 'ciwastra, bandung', 'bandung', '0000-00-00', 'asasasasasasasasasasasasas.PNG', '087708770877', 'admin5@gmail.com', 'admin123', 'T', 'DEACTIVE');
+INSERT INTO `pemilik_usaha` (`no_ktp`, `nama`, `alamat`, `tpt_lahir`, `tgl_lahir`, `foto_ktp`, `no_telp`, `email`, `password`, `dihapus`, `aktivasi`, `tgl_daftar`) VALUES
+('3204051405940005', 'Aldi Ahmad', 'Jalan Cibiru Hilir No.17', 'Bandung', '2015-06-30', 'DSC_0617.JPG', '085724639200', 'aldikedua@gmail.com', 'aldi', 'T', 'ACTIVE', '0000-00-00 00:00:00'),
+('3210070304940001', 'tresna gumelar', 'cikijing, kab.majalengka', 'majalengka', '0000-00-00', 'IMG_5342.jpg', '081908190819', 'admin4@gmail.com', 'admin123', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3210071405940021', 'aldy ahmad', 'cibiru, bandung', 'bandung', '1994-05-14', 'IMG_3807.JPG', '085708570857', 'admin@gmail.com', 'admin123', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3210072009940021', 'bayu rifqi', 'gelatik dalam, bandung', 'ambon', '0000-00-00', 'IMG_5456.jpg', '085308530853', 'admin6@gmail.com', 'admin123', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3210072109940001', 'bayu setiaji', 'ujunberung, bandung\r\n', 'bandung', '1994-09-21', 'IMG_4749.jpg', '082208220822', 'admin2@gmail.com', 'admin123', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3210072212940001', 'bayu fajar', 'banjaran, kab.bandung', 'bandung', '1994-12-22', 'IMG_4781.jpg', '087708770877', 'admin3@gmail.com', 'admin123', 'T', 'DEACTIVE', '0000-00-00 00:00:00'),
+('3273225102940007', 'Ika Widya', 'Jalan Cijawura Hilir No.356', 'Bandung', '1994-02-11', 'asasasasasasasasasasasasas.PNG', '085721740036', 'ikawidyaa@gmail.com', 'ika', 'T', 'ACTIVE', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -350,10 +386,16 @@ INSERT INTO `sektor_usaha` (`id_sektor`, `keyword_sektor`, `nama_sektor`, `dihap
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+ ADD PRIMARY KEY (`nip`);
+
+--
 -- Indexes for table `data_usaha`
 --
 ALTER TABLE `data_usaha`
- ADD PRIMARY KEY (`id_usaha`), ADD KEY `fk_datausaha_01` (`id_desa`), ADD KEY `fk_datausaha_02` (`id_kec`), ADD KEY `fk_datausaha_03` (`id_sektor`);
+ ADD PRIMARY KEY (`id_usaha`), ADD KEY `fk_datausaha_01` (`id_desa`), ADD KEY `fk_datausaha_02` (`id_kec`), ADD KEY `fk_datausaha_03` (`id_sektor`), ADD KEY `fk_datausaha_04` (`no_ktp`);
 
 --
 -- Indexes for table `desa`
@@ -393,7 +435,7 @@ ALTER TABLE `sektor_usaha`
 -- AUTO_INCREMENT for table `data_usaha`
 --
 ALTER TABLE `data_usaha`
-MODIFY `id_usaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id_usaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `desa`
 --
@@ -424,7 +466,8 @@ MODIFY `id_sektor` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 ALTER TABLE `data_usaha`
 ADD CONSTRAINT `fk_datausaha_01` FOREIGN KEY (`id_desa`) REFERENCES `desa` (`id_desa`),
 ADD CONSTRAINT `fk_datausaha_02` FOREIGN KEY (`id_kec`) REFERENCES `kecamatan` (`id_kec`),
-ADD CONSTRAINT `fk_datausaha_03` FOREIGN KEY (`id_sektor`) REFERENCES `sektor_usaha` (`id_sektor`);
+ADD CONSTRAINT `fk_datausaha_03` FOREIGN KEY (`id_sektor`) REFERENCES `sektor_usaha` (`id_sektor`),
+ADD CONSTRAINT `fk_datausaha_04` FOREIGN KEY (`no_ktp`) REFERENCES `pemilik_usaha` (`no_ktp`);
 
 --
 -- Constraints for table `desa`
