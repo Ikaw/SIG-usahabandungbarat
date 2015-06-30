@@ -950,6 +950,7 @@ session_start();
 						<div class="row">
 							<div class="col-md-6">
 								<!-- Content -->
+
 						</div>
 					</div>
 				</div>
@@ -1075,7 +1076,7 @@ session_start();
 			                    <div class="col-md-12 control">
 			                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
 			                        	Lupa Password?  
-			                            <a href="lupa_pasword.php">
+			                            <a href="lupa_password.php">
 			                                Klik Disini
 			                            </a>
 			                        </div>
