@@ -1,19 +1,9 @@
-<?php	
-	function koneksi_db(){ 
-    $host = "localhost"; 
-    $database = "db_sigbb"; 
-    $user = "root"; 
-    $password = ""; 
-    $link = mysql_connect($host,$user,$password); 
-    mysql_select_db($database,$link); 
-      if(!$link) 
-        echo "Error :".mysql_error(); 
-        return $link; 
-  }
+<?php
+	include("lib/lib_func.php");	
 	$link = koneksi_db();
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$sql = "select * from pemilik_usaha where email='$email' and password='$password'";
+	$sql = "select * from pemilik_usaha where email='$email' and password='$password' and aktivasi='active'";
 	$res=mysql_query($sql,$link);
 	if(mysql_num_rows($res)==1) // apabila username dan userpass benar
 	{
