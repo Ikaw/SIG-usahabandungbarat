@@ -110,12 +110,21 @@ function footer_web()
 <?php } ?>
 
 <?php
-function menu(){ ?>
+function menu(){
+  $noktp=$_SESSION['no_ktp'];
+  $link=koneksi_db();
+  $sql="select * from pemilik_usaha where no_ktp='$noktp'";
+  $res=mysql_query($sql,$link);
+  $data=mysql_fetch_array($res);
+  $nama=$data['nama'];
+
+  ?>
 <div class="list-group" align="center">
-  <div align="left" class="font1"><h5>Selamat Datang</h5></div>
-  <div align="right"><h4>------</h4></div>
+  <div align="center" class="font1"><h5>Selamat Datang</h5></div>
+  <div align="center"><font color="navy"><h3><?php echo "$nama";?></h3></font></div>
   <a href="index.php" class="list-group-item">Data Diri</a>
   <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+  <a href="#.php" class="list-group-item">Galery</a>
 </div>
 
 <?php }

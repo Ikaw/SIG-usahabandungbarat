@@ -9,7 +9,7 @@
 	{
 		$data=mysql_fetch_array($res);
 		session_start();
-		$_SESSION['nama']=$data['nama']; // isi vareiabel nama
+		$_SESSION['no_ktp']=$data['no_ktp']; // isi vareiabel nama
 		$_SESSION['sudahlogin']=true; // variabel status sudah login
 		header("Location:pemilik_usaha/index.php"); // pindah ke halaman index.php
 	}

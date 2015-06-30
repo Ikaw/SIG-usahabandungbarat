@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,106 +22,59 @@
   </head>
   <body>
 <!-- AWAL CONTENT  -- hapus dari sini kebawah (sampai AKHIR CONTENT) -->
-    <table width="100%" align="center" border=0 > 
-      <tr>
-        <td colspan=2 align="center" >
-          <?php header_web();?>
-        </td>
-      </tr>
-      <tr> 
-        <td width="250px" valign="top">
-          <?php menu();?>
-        </td> 
-        <td valign="top" >
-          <table class="table table-striped" align="center">
-            <tr>
-              <td align="left" width="300px">
-                <a href="usaha_form_tambah.php">
-                  <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#tambah">
-                  <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
-                </button>
-                </a>
-              </td>
-              <td align="right">
-                <div class="row">
-                  <div class="col-lg-8">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Pencarian...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Cari</button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
+<div class="container-fluid">
+  <?php header_web();?>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <?php menu();?>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="usaha_form_tambah.php">
+            <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#tambah">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
+            </button>
+          </a>
+        </div>
+        <div class="col-lg-8">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Pencarian...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">Cari</button>
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
           <?php
+            $noktp = $_SESSION['no_ktp'];
             $link=koneksi_db();
-            $sql="select * from data_usaha order by nama_usaha"; //sementara yg ini dulu karena log-in nya belum beres :v
-			//$sql = "SELECT * FROM data_usaha where no_ktp = '$no_ktp' order by nama_usaha"; //nanti ini yang dipake
+            $sql="select * from data_usaha where no_ktp = '$noktp' order by nama_usaha";
             $res=mysql_query($sql,$link);
             $banyakrecord=mysql_num_rows($res);
             if($banyakrecord>0){
-              ?>
-              <table class="table table-hover" align="center">
-                <tr>
-                  <td colspan=11 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
-                </tr>
-                <tr>
-                  <td>ID Usaha</td>
-                  <td>Nama Usaha</td>
-                  <td>Produk Utama</td>
-                  <td>Skala Usaha</td>
-                  <td>Alamat</td>
-                  <td>Deskripsi Usaha</td>
-                  <td>Latitude</td>
-                  <td>Longitude</td>
-                  <td>ID Kecamatan</td>
-                  <td>ID Desa</td>
-                  <td>ID Sektor</td>
-                  <td>Aksi</td>
-                </tr>
-                <?php
-                  $i=0;
-                  while($data=mysql_fetch_array($res)){
+              $i=0;
+              while($data=mysql_fetch_array($res)){
                     $i++;
                     ?>
-                    <tr>
-                      <td>
-                        <?php echo $data['id_usaha'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['nama_usaha'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['produk_utama'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['skala'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['alamat_usaha'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['deskripsi_usaha'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['lat'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['lng'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['id_kec'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['id_desa'];?>
-                      </td>
-                      <td>
-                        <?php echo $data['id_sektor'];?>
-                      </td>
-                      <td>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="from-group">
+                      <label for="id_usaha" class="col-sm-4  control-label">ID Usaha</label>
+                      <div class="col-md-6">
+                        <input type="text" value="<?=$data['id_usaha']?>" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
                           <!--Hapus Data-->
                             <a href="javascript:;" data-id="<?php echo $data['id_usaha']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
                               <button class="btn btn-primary">
@@ -163,6 +119,12 @@
           <div class="alert alert-warning" role="alert">Data Usaha tidak ditemukan !!</div>
           <?php
         }?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
               </table>
         </td> 
       </tr>

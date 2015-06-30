@@ -36,9 +36,9 @@ session_start();
           <table class="table table-striped" align="center">
           </table>
           <?php
-            $nama = $_SESSION['nama'];
+            $noktp = $_SESSION['no_ktp'];
             $link = koneksi_db();
-            $sql  = "SELECT * FROM pemilik_usaha WHERE nama='$nama'";
+            $sql  = "SELECT * FROM pemilik_usaha WHERE no_ktp='$noktp'";
             $res  = mysql_query($sql,$link);
             $data = mysql_fetch_array($res);
               ?>
