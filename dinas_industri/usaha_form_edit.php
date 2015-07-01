@@ -204,6 +204,11 @@
                     <h3 class="panel-title">Edit Data Usaha</h3>
                   </div>
                 </div>
+                  <div class="form-group">
+                    <div class="col-sm-6">
+                      <input type="hidden" class="form-control" id="id_usaha" name="id_usaha" value="<?php echo "$data[id_usaha]";?>">
+                    </div>
+                  </div>
                 <div class="form-group">
                     <label for="no_ktp" class="col-sm-4  control-label">No KTP</label>
                     <div class="col-sm-6">
@@ -279,7 +284,7 @@
                           mysql_connect("localhost","root","");
                           mysql_select_db("db_sigbb");
                           //mengambil nama-nama kecamatan yang ada di database
-                          $kecamatan = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec");
+                          $kecamatan = mysql_query("SELECT * FROM kecamatan ORDER BY nama_kec;");
                           while($p=mysql_fetch_array($kecamatan))
                             {?>
                             <option value="<?php echo "$p[id_kec]";?>" <?php if($p['id_kec']==$data['id_kec']) echo "selected";?>>
@@ -297,8 +302,9 @@
                         <option>--Pilih Desa--</option>
                           <?php
                           //mengambil nama-nama desa yang ada di database
-                          $desa = mysql_query("SELECT * FROM desa ORDER BY nama_desa");
-                          while($p=mysql_fetch_array($kecamatan))
+                          $id_kec = $data['id_kec'];
+                          $desa = mysql_query("SELECT * FROM desa ORDER BY nama_desa;");
+                          while($p=mysql_fetch_array($desa))
                             {?>
                             <option value="<?php echo "$p[id_desa]";?>" <?php if ($p['id_desa']==$data['id_desa']) echo "selected";?>>
                               <?php echo "$p[nama_desa]";?></option>

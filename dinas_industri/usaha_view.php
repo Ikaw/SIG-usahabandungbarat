@@ -56,6 +56,7 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <h3 class="text-center">Data Usaha</h3>
+                <hr width="100%" color="black" />
                 <div class="table-responsive">
                   <?php
                   $link=koneksi_db();
