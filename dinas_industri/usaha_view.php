@@ -35,21 +35,12 @@
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
                 </button>
               </a>
-              <!-- Button trigger modal -->
-                <!--button class="btn btn-primary btn-md" data-toggle="modal" data-target="#tambah">
-                  <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
-                </button-->
-                <!-- Modal<span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
-                <!--div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content"-->
-                      <?php //tambah_usaha();?>
-                    <!/div>
-                    <!-- /.modal-content -->
-                  <!/div>
-                  <!-- /.modal-dialog -->
-                <!/div>
-                <!-- /.modal -->
+              &nbsp;&nbsp;&nbsp;
+              <a href="usaha_report.php">
+                <button class="btn btn-primary btn-md">
+                  <span class="glyphicon glyphicon-file" aria-hidden="true"> Buat Laporan</span>
+                </button>
+              </a>
           </div>
           <div class="col-md-7">
             <div class="input-group">
