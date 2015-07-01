@@ -38,8 +38,8 @@
                   header("Location:pengusaha_tambah_berhasil.php");
                 }
                 */
-                echo json_encode($_SESSION);
-                //header("Location:pengusaha_tambah_berhasil.php");
+                
+                header("Location:pengusaha_tambah_berhasil.php?no_ktp=$no_ktp");
               }
               else {
                 header("Location:pengusaha_tambah_gagal.php");
