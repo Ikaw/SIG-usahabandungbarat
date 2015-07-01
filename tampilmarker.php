@@ -21,7 +21,7 @@
     } 
 
     // Select all the rows in the markers table -> Sesuaikan tabel yang akan diambil datanya
-    $query = "SELECT nama_usaha,alamat_usaha,lat,lng,data_usaha.id_sektor,keyword_sektor FROM data_usaha JOIN sektor_usaha WHERE data_usaha.id_sektor=sektor_usaha.id_sektor";
+    $query = "SELECT id_usaha,nama_usaha,alamat_usaha,lat,lng,data_usaha.id_sektor,keyword_sektor FROM data_usaha JOIN sektor_usaha WHERE data_usaha.id_sektor=sektor_usaha.id_sektor";
     $result = mysql_query($query);
     if (!$result) {  
       die('Invalid query: ' . mysql_error());
@@ -33,7 +33,8 @@
     while ($row = @mysql_fetch_assoc($result)){  
       // ADD TO XML DOCUMENT NODE  
       $node = $dom->createElement("marker");  
-      $newnode = $parnode->appendChild($node);   
+      $newnode = $parnode->appendChild($node);
+      $newnode->setAttribute("id_usaha",$row['id_usaha']);   
       $newnode->setAttribute("name",$row['nama_usaha']);
       $newnode->setAttribute("address", $row['alamat_usaha']);  
       $newnode->setAttribute("lat", $row['lat']);  

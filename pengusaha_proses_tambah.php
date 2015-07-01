@@ -3,6 +3,9 @@
 
           if($_FILES['foto_ktp']['error']==0){
             $link = koneksi_db();
+            
+            $_SESSION['email']=$_POST['email'];
+            $_SESSION['nama']=$_POST['nama'];
             $nama = $_POST['nama'];
             $no_ktp = $_POST['no_ktp'];
             $alamat = $_POST['alamat'];
@@ -19,8 +22,11 @@
               VALUES
               ('$nama','$no_ktp','$alamat','$tpt_lahir','$tgl_lahir','$foto_ktp','$no_telp','$email','$password')";
               $result = mysql_query($sql,$link);
+              //$result = true;
               if ($result) {
                 //select
+                /*
+                echo json_encode(mysql_insert_id());
                 $sql2 = "select nama,email from pemilik_usaha where email='$email' and nama='$nama'";
                 $res=mysql_query($sql2,$link);
                 if(mysql_num_rows($res)==1) // apabila username dan userpass benar
@@ -29,7 +35,11 @@
                   session_start();
                   $_SESSION['nama']=$data['nama']; // isi variabel email
                   $_SESSION['email']=$data['email']; // isi variabel email
-                  header("Location:pengusaha_tambah_berhasil.php");}
+                  header("Location:pengusaha_tambah_berhasil.php");
+                }
+                */
+                echo json_encode($_SESSION);
+                //header("Location:pengusaha_tambah_berhasil.php");
               }
               else {
                 header("Location:pengusaha_tambah_gagal.php");

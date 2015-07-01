@@ -48,7 +48,7 @@ session_start();
 	          var infoWindow = new google.maps.InfoWindow;
 
 	          // download XML dokumen
-	          downloadUrl("tampilmarker.php", function(data) {
+	          downloadUrl("filter_map.xml", function(data) {
 	            var xml = data.responseXML;
 	            var markers = xml.documentElement.getElementsByTagName("marker");
 	            for (var i = 0; i < markers.length; i++) {
@@ -352,7 +352,7 @@ session_start();
 							<tr>
 							<tr>
 								<td>
-									<select name="desa" id="desa" class="fontHitam selectpicker">
+									<select name="desa" id="desa" class="selectpicker">
 										<?php
 											koneksi_db();
 											$sql = "SELECT id_desa, nama_desa FROM desa ORDER BY nama_desa";
@@ -412,8 +412,20 @@ session_start();
 							</tr>
 							<tr>
 								<td>	
-								<div align="center">
+								<div align="left">
 									<button class="btn btn-primary" id="filter_map"> Filter Map</button>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<br>
+								</td>
+							</tr>
+							<tr>
+								<td>	
+								<div align="center">
+									<a href="index.php#peta"> Tampilkan Semua</button>
 								</div>
 								</td>
 							</tr>
@@ -421,10 +433,9 @@ session_start();
 							</div>
 						</div>
 					</div>
-				</div> <!-- Row End-->
-			</div> <!-- Container End-->
-		</div>
-		<!-- section end -->
+				</div> <!-- Row End -->
+			</div> <!-- Container End --> 
+		</div> <!-- section end -->
 
 		
 

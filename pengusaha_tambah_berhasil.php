@@ -1,5 +1,7 @@
-<?
+<?php
 session_start();
+echo json_encode($_SESSION);
+exit();
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +53,10 @@ session_start();
 								<div class="space"></div>
 							</div>
 							<div class="col-md-6">
-								<p>Selamat datang <strong><?php echo $_SESSION['nama'];?></strong> data anda terdaftar dengan email<strong> <?php echo $_SESSION['email'];?> </strong>.</p>
+								<p>Selamat datang <strong><?php 
+									echo $_SESSION['nama'];
+
+								?></strong> data anda terdaftar dengan email<strong> <?php echo $_SESSION['email'];?> </strong>.</p>
 								<p>Kami telah mengirimkan pemberitahuan untuk memastikan email yang anda masukkan benar. Silahkan Cek Email anda ! (termasuk di folder Spam)</p>
 								<p>Petugas kami akan mengecek validasi antara data yang diinputkan dengan data yang tertera pada file KTP yang telah anda Upload untuk dilakukan aktivasi user.</p>
 								<p>Apabila dalam waktu 2x24 jam akun anda belum teraktivasi dan belum dapat melakukan login hubungi kami pada link dibawah ini.</p> 
