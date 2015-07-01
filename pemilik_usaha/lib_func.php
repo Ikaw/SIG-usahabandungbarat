@@ -270,7 +270,7 @@ function tampil_nama(){
 function tampil_datadiri(){
   $noktp = $_SESSION['no_ktp'];
   $link=koneksi_db();
-  $sql="select * from pemilik_usaha where no_ktp = '$noktp'";
+  $sql="select * from pemilik_usaha where no_ktp = '$noktp' && dihapus='T'";
   $res=mysql_query($sql,$link);
   $data=mysql_fetch_array($res);
   ?>
@@ -375,10 +375,82 @@ function tampil_datadiri(){
       </button>
     </a>
   </div>
-</div>
-  
-    
+</div>    
 <?php
+}
+
+function filter_gambar(){
+  $noktp = $_SESSION['no_ktp'];
+  $link=koneksi_db();
+  $sql="select * from data_usaha where no_ktp = '$noktp'";
+  $res=mysql_query($sql,$link);
+  $i=0;
+  while($data=mysql_fetch_array($res)){
+    $i++;
+    ?>
+    <li><a href="#" data-filter=".<?=$data['id_usaha']?>"><?=$data['nama_usaha']?></a></li>
+<?php
+  }
+}
+
+function galeri(){
+  $noktp = $_SESSION['no_ktp'];
+  $link=koneksi_db();
+  $sql="select * from data_usaha where no_ktp = '$noktp'";
+  $res=mysql_query($sql,$link);
+  $i=0;
+  while($data=mysql_fetch_array($res)){
+    $i++;
+    $id_usaha=$data['id_usaha'];
+    $gambar = "select * from galeri where id_usaha='$id_usaha' && dihapus='T'";
+    $result = mysql_query($gambar,$link);
+    $i=0;
+    while ($gam=mysql_fetch_array($result)) {
+      $i++;
+  ?>
+
+  <div class="col-sm-6 col-md-3 isotope-item <?=$id_usaha?>">
+    <div class="image-box">
+      <div class="overlay-container">
+        <img src="../dinas_industri/user_data/<?=$gam['nama_gambar']?>">
+        <a class="overlay" data-toggle="modal" data-target="#<?=$gam['id_gambar']?>">
+          <i class="fa fa-search-plus"></i>
+          <span><?echo "$data=['nama_usaha']";?></span>
+        </a>
+      </div>
+      <a class="btn btn-default btn-block" data-toggle="modal" data-target="#<?=$gam['id_gambar']?>"><?=$gam['id_gambar']?></a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="<?=$gam['id_gambar']?>" tabindex="-1" role="dialog" aria-labelledby="<?=$gam['id_gambar']?>-label" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="<?=$gam['id_gambar']?>-label"><?=$data['nama_usaha']?></h4>
+          </div>
+          <div class="modal-body">
+            <h3><?=$data['nama_usaha']?></h3>
+            <div class="row">
+              <div class="col-md-6">
+                <p><?=$data['deskripsi_usaha']?></p>
+              </div>
+              <div class="col-md-6">
+                <img src="../dinas_industri/user_data/<?=$gam['nama_gambar']?>">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal end -->
+  </div>
+<?php
+    }
+  }
 }?>
 
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
@@ -386,6 +458,27 @@ function tampil_datadiri(){
     <script src="js/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    
+    <script>
+        
+            $(document).ready(function(){
+
+            $('#modal-konfirmasi').on('show.bs.modal', function (event) {
+            var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+
+            // Untuk mengambil nilai dari data-id="" yang telah kita tempatkan pada link hapus
+            var id_usaha = div.data('id')
+            //var nama_kec = div.data('id')
+
+            var modal = $(this)
+
+            // Mengisi atribut href pada tombol ya yang kita berikan id hapus-true pada modal .
+            modal.find('#hapus-true').attr("href","usaha_hapus.php?id_usaha="+id_usaha);
+
+            })
+
+            });
+
+        
+    </script>    
   </body>
 </html>

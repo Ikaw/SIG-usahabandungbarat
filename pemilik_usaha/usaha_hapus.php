@@ -61,98 +61,14 @@
                     $sql = "UPDATE data_usaha SET dihapus='Y' WHERE id_usaha='$id_usaha'";
                     $res=mysql_query($sql,$link);
                     if ($res) {
-                      echo "Berhasil dihapus";
+                      header("location:../index.php");
                     } 
                     else {
                       echo "Gagal Broh !!!";
                     }
-                  }
-
-            $sql="select * from data_usaha where dihapus='T' order by id_usaha";
-            $result=mysql_query($sql,$link);
-            $banyakrecord=mysql_num_rows($result);
-            if($banyakrecord>0)
-            {?>
-              <table class="table table-striped" align="center">
-                <tr>
-                  <td colspan=11 align="center" valign="middle"><font></font><h3>Data Usaha</h3></td>
-                </tr>
-                <tr>
-                  <td>ID Usaha</td>
-                  <td>Nama Usaha</td>
-                  <td>Produk Utama</td>
-                  <td>Skala Usaha</td>
-                  <td>Alamat</td>
-                  <td>Deskripsi Usaha</td>
-                  <td>Latitude</td>
-                  <td>Longitude</td>
-                  <td>ID Kecamatan</td>
-                  <td>ID Desa</td>
-                  <td>ID Sektor</td>
-                  <td>Aksi</td>
-                </tr>
-                <?php
-                  $i=0;
-                  while($data=mysql_fetch_array($result)){
-                    $i++;
-                    ?>
-                    <tr>
-                      <form method="get" action="<?php echo $_SERVER["PHP_SELF"];?>">
-                        <td>
-                          <?php echo $data['id_usaha'];?>
-                          <input type="hidden" value="<?php echo $data['id_usaha'];?>" name="id_usaha">
-                        </td>
-                        <td>
-                          <?php echo $data['nama_usaha'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['produk_utama'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['skala'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['alamat_usaha'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['deskripsi_usaha'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['lat'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['lng'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['id_kec'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['id_desa'];?>
-                        </td>
-                        <td>
-                          <?php echo $data['id_sektor'];?>
-                        </td>
-                        <td align="center">
-                          <div class="form-group" align="center">
-                            <div class="col-sm-offset-2 col-sm-10">
-                              <button class="btn btn-primary">Hapus</button>
-                            </div>
-                          </div>
-                        </td>
-                      </form>
-                    </tr>
-                    <?php
                   }?>
-            </table>
-            <?php
-        }else{
-          ?>
-          <div class="alert alert-warning" role="alert">Data Usaha tidak ditemukan !!</div>
-          <?php
-        }?>
-              </table>
-        </td> 
-      </tr>
+            
+              
       <tr>
         <td colspan=2>
           <?php footer_web();?>
