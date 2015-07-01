@@ -1,5 +1,5 @@
 <?php 
-$base_url = 'http://'.$_SERVER['HTTP_HOST'].'/SIG-Potensi-Usaha/';
+$base_url = 'http://'.$_SERVER['HTTP_HOST'].'/SIG-usahabandungbarat/';
 
 isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
 
@@ -10,7 +10,7 @@ isset ($_GET['app']) ? $app = $_GET['app'] : $app = 'home_index';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistem Informasi Geografis Potensi Usaha</title>
+    <title>SIG | Potensi Usaha Bandung Barat </title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -139,6 +139,246 @@ function koneksi_db(){
   if(!$link) 
     echo "Error :".mysql_error(); 
     return $link; 
+}
+
+function tampil_usaha(){?>
+  <?php
+            $noktp = $_SESSION['no_ktp'];
+            $link=koneksi_db();
+            $sql="select * from data_usaha where no_ktp = '$noktp' order by nama_usaha";
+            $res=mysql_query($sql,$link);
+            $banyakrecord=mysql_num_rows($res);
+            if($banyakrecord>0){
+              $i=0;
+              while($data=mysql_fetch_array($res)){
+                    $i++;
+                    ?>
+
+              <div class="row show-grid">
+                <div class="container">
+                  <div class="col-md-6 col-md-offset-3" data-animation-effect="fadeIn">
+                    <div class="table-responsive">
+                      <h3>Usaha ke - <span><?=$i;?></span></h3>
+                      <table class="table">
+                        <tr>
+                          <td>ID Usaha</td>
+                          <td><?=$data['id_usaha']?></td>
+                        </tr>
+                        <tr>
+                          <td>Nama Usaha</td>
+                          <td><?=$data['nama_usaha']?></td>
+                        </tr>
+                        <tr>
+                          <td>Produk Utama</td>
+                          <td><?=$data['produk_utama']?></td>
+                        </tr>
+                        <tr>
+                          <td>Deskripsi Usaha</td>
+                          <td><?=$data['deskripsi_usaha']?></td>
+                        </tr>
+                        <tr>
+                          <td>Alamat Usaha</td>
+                          <td><?=$data['alamat_usaha']?></td>
+                        </tr>
+                        <tr>
+                          <td>Latitude</td>
+                          <td><?=$data['lat']?></td>
+                        </tr>
+                        <tr>
+                          <td>Longitude</td>
+                          <td><?=$data['lng']?></td>
+                        </tr>
+                        <tr>
+                          <td>Kecamatan</td>
+                          <td><?=$data['id_kec']?></td>
+                        </tr>
+                        <tr>
+                          <td>Desa</td>
+                          <td><?=$data['id_desa']?></td>
+                        </tr>
+                        <tr>
+                          <td>Sektor</td>
+                          <td><?=$data['id_sektor']?></td>
+                        </tr>
+                        <tr>
+                          <td>Skala</td>
+                          <td><?=$data['skala']?></td>
+                        </tr>
+                        <tr>
+                          <td>Status</td>
+                          <td><?=$data['aktivasi']?></td>
+                        </tr>
+                        <tr align="center">
+                          <td colspan="2">
+                            <a href="javascript:;" data-id="<?php echo $data['id_usaha']; ?>" data-toggle="modal" data-target="#modal-konfirmasi">
+                              <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+                              </button>
+                            </a>
+                              <div class="modal fade" id="modal-konfirmasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title" id="myModalLabel">Hapus Data Usaha</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      Apakah anda yakin akan menghapus Usaha <?php echo $data['nama_usaha'];?> ??
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                                      <a href="javascript:;" id="hapus-true" class="btn btn-danger">Ya, Hapus</a>
+                                    </div>
+                                  </div>
+                                  <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                              </div>
+                            
+                            
+                              <a href="usaha_form_edit.php?id_usaha=<?php echo $data['id_usaha'];?>">
+                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Ubah">
+                                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
+                              </a>
+                            </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="space"></div>  
+                    <?php
+                    }?>
+            <?php
+            }else{
+              ?>
+              <div class="alert alert-warning" role="alert">Data Usaha tidak ditemukan !!</div>
+              <?php
+            }
+}
+function tampil_nama(){
+  $noktp = $_SESSION['no_ktp'];
+  $link=koneksi_db();
+  $sql="select * from pemilik_usaha where no_ktp = '$noktp'";
+  $res=mysql_query($sql,$link);
+  $data=mysql_fetch_array($res);
+  echo $data['nama'];
+}
+
+function tampil_datadiri(){
+  $noktp = $_SESSION['no_ktp'];
+  $link=koneksi_db();
+  $sql="select * from pemilik_usaha where no_ktp = '$noktp'";
+  $res=mysql_query($sql,$link);
+  $data=mysql_fetch_array($res);
+  ?>
+  <div class="row">
+    <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-5">
+        <p class="large">
+          <span>Nomor KTP </span>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p class="large">
+          <?=$data['no_ktp']?>
+        </p>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-5">
+        <p class="large">
+          <span>Nama </span>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p class="large">
+          <?=$data['nama']?>
+        </p>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-5">
+        <p class="large">
+          <span>Tempat Lahir </span>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p class="large">
+          <?=$data['tpt_lahir']?>
+        </p>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-5">
+        <p class="large">
+          <span>Tanggal Lahir </span>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p class="large">
+          <?=$data['tgl_lahir']?>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+        <p class="large">
+          <span>Alamat </span>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <p class="large">
+          <?=$data['alamat']?>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+        <p class="large">
+          <span>Telepon </span>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <p class="large">
+          <?=$data['no_telp']?>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+        <p class="large">
+          <span>Email </span>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <p class="large">
+          <?=$data['email']?>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" align="center">
+    <a href="pengusaha_form_edit.php?no_ktp=<?php echo $data['no_ktp'];?>">
+      <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Ubah">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>  Edit Data Diri
+      </button>
+    </a>
+  </div>
+</div>
+  
+    
+<?php
 }?>
 
 <!-- AKHIR CONTENT - dari sini kebawah jgn dihapus -->
