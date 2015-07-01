@@ -25,7 +25,18 @@
   </div>
   <div class="container-fluid">
     <div class="row show-grid">
-    <?php menu_admin(); ?>
+      <div class="col-md-3">
+        <div class="list-group" align="center">
+          <h4><b><a href="index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
+          <a href="pengusaha_view.php" class="list-group-item">Data Pengusaha</a>
+          <a href="sektor_view.php" class="list-group-item active">Data Sektor Usaha</a>
+          <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
+          <a href="desa_view.php" class="list-group-item">Data Desa</a>
+          <a href="usaha_view.php" class="list-group-item">Data Usaha</a>
+          <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
+          <a href="logout.php" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
+        </div>
+      </div>
       <div class="col-md-9">
         <div class="row show-grid">
           <div class="col-md-5">
@@ -59,7 +70,6 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <h3 class="text-center">Data Sektor Usaha</h3>
-                <hr width="100%" color="black" />
                 <div class="table-responsive">
                   <?php
                     $link=koneksi_db();

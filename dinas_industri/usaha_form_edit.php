@@ -152,7 +152,18 @@
 </div>
 <div class="container-fluid">
   <div class="row show-grid">
-    <?php menu_admin(); ?>
+    <div class="col-md-3">
+      <div class="list-group" align="center">
+        <h4><b><a href="index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
+        <a href="pengusaha_view.php" class="list-group-item ">Data Pengusaha</a>
+        <a href="sektor_view.php" class="list-group-item ">Data Sektor Usaha</a>
+        <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
+        <a href="desa_view.php" class="list-group-item">Data Desa</a>
+        <a href="usaha_view.php" class="list-group-item active">Data Usaha</a>
+        <a href="galeri_view.php" class="list-group-item">Data Galeri</a>
+        <a href="logout.php" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
+      </div>
+    </div>
     <div class="col-md-9">
       <div class="row show-grid">
         <div class="col-md-5">
@@ -303,7 +314,7 @@
                           <?php
                           //mengambil nama-nama desa yang ada di database
                           $id_kec = $data['id_kec'];
-                          $desa = mysql_query("SELECT * FROM desa ORDER BY nama_desa;");
+                          $desa = mysql_query("SELECT * FROM desa WHERE id_kec='$id_kec' ORDER BY nama_desa;");
                           while($p=mysql_fetch_array($desa))
                             {?>
                             <option value="<?php echo "$p[id_desa]";?>" <?php if ($p['id_desa']==$data['id_desa']) echo "selected";?>>
