@@ -55,7 +55,7 @@
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i><a href="index.php#kontak"> Hubungi Kami</a></li>
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i><a href="index.php#daftar"> Pendaftaran Usaha</a></li>
 									<li><i class="fa fa-caret-right pr-10 text-colored"></i><a href="index.php#login"> Kembali Ke Halaman Login</a></li>
-									<li><i class="fa fa-caret-right pr-10 text-colored"></i><a href="index.php"> Kembali Ke Beranda</a></li>
+									<li><i class="fa fa-caret-right pr-10 text-colored"></i><a href="dashboard.php"> Kembali Ke Beranda</a></li>
 								</ul>
 							</div>
 						</div>

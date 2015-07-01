@@ -52,7 +52,7 @@
     <div class="row show-grid">
       <div class="col-md-3">
         <div class="list-group" align="center">
-          <h4><b><a href="index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
+          <h4><b><a href="dashboard.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
           <a href="pengusaha_view.php" class="list-group-item active">Data Pengusaha</a>
           <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
@@ -102,6 +102,7 @@
             <div class="panel panel-default">
               <div class="panel-body">
                 <h3 class="text-center">Data Pengusaha</h3>
+                <hr width="100%" color="black" />
                 <div class="table-responsive">
                   <?php
                   $link=koneksi_db();

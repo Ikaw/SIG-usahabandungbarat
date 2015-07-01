@@ -27,7 +27,7 @@
     <div class="row show-grid">
       <div class="col-md-3">
         <div class="list-group" align="center">
-          <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   ADMINISTRATOR</h3>
+          <h4><b><a href="dashboard.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
           <a href="pengusaha_view.php" class="list-group-item ">Data Pengusaha</a>
           <a href="sektor_view.php" class="list-group-item ">Data Sektor Usaha</a>
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
@@ -45,17 +45,6 @@
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"> Tambah Data</span>
                 </button>
               </a>
-                <!-- Modal<span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
-                <div class="modal fade" id="tambah" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"-->
-                  <!div class="modal-dialog">
-                    <!div class="modal-content">
-                      <?php //tambah_usaha();?>
-                    <!/div>
-                    <!-- /.modal-content -->
-                  <!/div>
-                  <!-- /.modal-dialog -->
-                <!/div>
-                <!-- /.modal -->
           </div>
           <div class="col-md-7">
             <div class="input-group">
@@ -73,23 +62,28 @@
                 <h3 class="text-center">Data Usaha</h3>
                 <div class="table-responsive">
                   <?php
-                  $link = koneksi_db();
-                  $nama_usaha = $_POST['nama_usaha'];
-                  $produk_utama = $_POST['produk_utama'];
-                  $deskripsi_usaha = $_POST['deskripsi_usaha'];
-                  $skala = $_POST['skala'];
-                  $id_sektor = $_POST['id_sektor'];
-                  $alamat = $_POST['address'];
-                  $id_kec = $_POST['kecamatan'];
-                  $id_desa = $_POST['desa'];
-                  $lat = $_POST['Lat'];
-                  $lng = $_POST['Lng'];
-                  $no_ktp = $_POST['no_ktp'];
-                
+                  $link             = koneksi_db();
+                  $nama_usaha       = $_POST['nama_usaha'];
+                  $produk_utama     = $_POST['produk_utama'];
+                  $deskripsi_usaha  = $_POST['deskripsi_usaha'];
+                  $skala            = $_POST['skala'];
+                  $id_sektor        = $_POST['id_sektor'];
+                  $alamat           = $_POST['address'];
+                  $id_kec           = $_POST['kecamatan'];
+                  $id_desa          = $_POST['desa'];
+                  $lat              = $_POST['Lat'];
+                  $lng              = $_POST['Lng'];
+                  $no_ktp           = $_POST['no_ktp'];
+
                     $sql = "INSERT INTO data_usaha(nama_usaha, produk_utama, alamat_usaha, deskripsi_usaha, lat, lng, id_kec, id_desa, id_sektor, skala,no_ktp) 
                     VALUES
                     ('$nama_usaha','$produk_utama','$alamat','$deskripsi_usaha','$lat','$lng','$id_kec','$id_desa','$id_sektor','$skala','$no_ktp')";
                     $result = mysql_query($sql, $link);
+                    
+                    $id_usaha = mysql_insert_id();
+                    $sql2 = "INSERT INTO notifikasi(tipe, id_lain, waktu) VALUES
+                            ('usaha','$id_usaha', now())";
+                    $res = mysql_query($sql2, $link);
                     if ($result) {
                       echo "Data Berhasil disimpan";
                     }

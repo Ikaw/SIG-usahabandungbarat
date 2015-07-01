@@ -33,7 +33,7 @@
               <button class="btn btn-primary" type="button">Cari</button>
             </span>
           </div>
-          <h4><b><a href="index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
+          <h4><b><a href="dashboard.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
           <a href="pengusaha_view.php" class="list-group-item active">Data Pengusaha</a>
           <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
           <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>

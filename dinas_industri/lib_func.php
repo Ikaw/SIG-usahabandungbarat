@@ -188,7 +188,7 @@ function form_login(){ ?>
 function dashboard(){?>
   <div class="col-md-3">
       <div class="list-group" align="center">
-        <h4><b><a href="index.php" class="list-group-item active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
+        <h4><b><a href="dashboard.php" class="list-group-item active"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  DASHBOARD</a></b></h4>
         <a href="pengusaha_view.php" class="list-group-item">Data Pengusaha</a>
         <a href="sektor_view.php" class="list-group-item">Data Sektor Usaha</a>
         <a href="kecamatan_view.php" class="list-group-item">Data Kecamatan</a>
@@ -208,7 +208,16 @@ function dashboard(){?>
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 </div>
                 <div class="col-xs-9">
-                  <div class="huge">5</div>
+                  <div class="huge">
+                  <?php
+                    $link = koneksi_db();
+                    $sql = "SELECT count(id_notif) as jml FROM notifikasi WHERE status = 'unread' AND tipe = 'pemilikusaha'";
+                    $result = mysql_query($sql, $link);
+                    $hasil = mysql_fetch_assoc($result);
+
+                    echo $hasil['jml'];
+                  ?>
+                  </div>
                   <div>Data Pemilik Usaha <b>Baru</b> !!!</div>
                 </div>
               </div>
@@ -219,9 +228,33 @@ function dashboard(){?>
             </div>
           </div>
         </div>
+        
         <div class="col-md-6">
-          <div class="jumbotron view">
-            <h3>Data Usaha <b>Baru</b> !!!</h3>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </div>
+                <div class="col-xs-9">
+                  <div class="huge">
+                  <?php
+                    $link = koneksi_db();
+                    $sql = "SELECT count(id_notif) as jml FROM notifikasi WHERE status = 'unread' AND tipe = 'usaha'";
+                    $result = mysql_query($sql, $link);
+                    $hasil = mysql_fetch_assoc($result);
+
+                    echo $hasil['jml'];
+                  ?>
+                  </div>
+                  <div>Data Usaha <b>Baru</b> !!!</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <span>Lihat Selengkapnya</span>
+              <div class="clearfix"></div>
+            </div>
           </div>
         </div>
       </div>
