@@ -145,7 +145,7 @@ function tampil_usaha(){?>
   <?php
             $noktp = $_SESSION['no_ktp'];
             $link=koneksi_db();
-            $sql="select * from data_usaha where no_ktp = '$noktp' order by nama_usaha";
+            $sql="select * from data_usaha where no_ktp = '$noktp' && dihapus='T' && aktivasi='ACTIVE' order by nama_usaha";
             $res=mysql_query($sql,$link);
             $banyakrecord=mysql_num_rows($res);
             if($banyakrecord>0){
@@ -382,7 +382,7 @@ function tampil_datadiri(){
 function filter_gambar(){
   $noktp = $_SESSION['no_ktp'];
   $link=koneksi_db();
-  $sql="select * from data_usaha where no_ktp = '$noktp'";
+  $sql="select * from data_usaha where no_ktp = '$noktp' && dihapus='T' && aktivasi='ACTIVE'";
   $res=mysql_query($sql,$link);
   $i=0;
   while($data=mysql_fetch_array($res)){
@@ -396,7 +396,7 @@ function filter_gambar(){
 function galeri(){
   $noktp = $_SESSION['no_ktp'];
   $link=koneksi_db();
-  $sql="select * from data_usaha where no_ktp = '$noktp'";
+  $sql="select * from data_usaha where no_ktp = '$noktp' && dihapus='T' && aktivasi='ACTIVE'";
   $res=mysql_query($sql,$link);
   $i=0;
   while($data=mysql_fetch_array($res)){

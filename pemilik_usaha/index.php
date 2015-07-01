@@ -241,7 +241,14 @@ session_start();
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1 id="usaha" class="title text-center">Usaha <span>ANDA</span></h1>
+						<h1 id="usaha" class="title text-center">Usaha <span>ANDA</span>
+						<div class="space"></div>
+						<a href="usaha_form_tambah.php">
+                            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Tambah">
+                            	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  DAFTAR USAHA BARU
+                            </button>
+                        </a>
+						</h1>
 						<div class="space"></div>
 						<?php tampil_usaha();?>
 						</div>
@@ -270,7 +277,15 @@ session_start();
 			<div class="container">
 				<h1 class="text-center title" id="galeri">Galeri <span>Usaha</span></h1>
 				<div class="separator"></div>
-				<br>			
+				<br>
+				<div class="text-center">
+					<a href="galeri_form_tambah.php">
+	                  <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Tambah">
+	                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  TAMBAH GAMBAR
+	                  </button>
+	                </a>
+				</div>
+				<div class="space"></div>			
 				<div class="row object-non-visible" data-animation-effect="fadeIn">
 					<div class="col-md-12">
 

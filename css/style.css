@@ -666,9 +666,11 @@ textarea {
 /* Images Overlay
 ----------------------------------------------------------------------------- */
 .overlay-container {
-	position: relative;
+	position: inherit;
 	display: block;
 	overflow: hidden;
+	width: 260px;
+	height: 150px;
 }
 .overlay {
 	position: absolute;
