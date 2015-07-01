@@ -14,6 +14,8 @@ session_start();
 		<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="jquery/jquery-1.11.1.min.js"></script>
 		<link rel="stylesheet" href="jquery/jquery-ui.min.css">
+		<script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.js'></script>
+		<script type="text/javascript" src="js/chart.js"></script>
 
 		<style type="text/css">
 			.fontHitam{
@@ -449,9 +451,7 @@ session_start();
 						<h1 id="info" class="title text-center"><span>Daftar Usaha</span> Kabupaten Bandung Barat</h1>
 						<div class="space"></div>
 						<div class="row">
-							<div class="col-md-6">
-								<!-- Content -->
-
+							<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 						</div>
 					</div>
 				</div>
@@ -674,6 +674,10 @@ session_start();
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap-datepicker.js"></script>
 
+		<!-- Chart JS -->
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+		
 		<!-- Modernizr javascript -->
 		<script type="text/javascript" src="plugins/modernizr.js"></script>
 
