@@ -51,7 +51,7 @@
             <?php
             } 
             else {
-              echo "Gagal Broh !!!";
+              echo "Ubah Data Gagal!!!";
             }               
         ?>
       </div>

@@ -48,7 +48,7 @@
                       <div class="alert alert-success" role="alert">Data Kecamatan Berhasil Dihapus !!</div>
                     <?php } 
                     else {
-                      echo "Gagal Broh !!!";
+                      echo "Hapus Data Kecamatan Gagal!!!";
                     }
         ?>
       </div>

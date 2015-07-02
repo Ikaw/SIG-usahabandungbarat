@@ -56,14 +56,6 @@
                 </div>
                 <!-- /.modal -->
           </div>
-          <div class="col-md-7">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Pencarian...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>   Cari</button>
-              </span>
-            </div>
-          </div>
         </div>
         <div class="row show-grid">
           <div class="col-md-12">
@@ -78,13 +70,13 @@
                     VALUES
                     ('$nama_kec')";
                     $result = mysql_query($sql, $link);
-                    if ($result) {
-                      echo "Data Berhasil disimpan";
+                    if ($result) {?>
+                      <div class="alert alert-success" role="alert">Data Kecamatan Berhasil Disimpan!!!</div>
+                      <?php
                     }
-                    else {
-                      echo "Gagal Broh !!!";
+                    else { ?>
+                      <div class="alert alert-success" role="alert">Tambah Data Kecamatan Gagal!!!</div>
                     }
-                  ?>
                 </div>
               </div>
             </div>

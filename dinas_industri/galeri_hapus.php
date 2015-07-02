@@ -50,7 +50,7 @@
                       <div class="alert alert-success" role="alert">Data Gambar Berhasil Dihapus !!</div>
                     <?php } 
                     else {
-                      echo "Gagal Broh !!!";
+                      echo "Hapus Data Gagal!!!";
                     }
         ?>
       </div>

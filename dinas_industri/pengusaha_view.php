@@ -86,16 +86,18 @@
               <!-- .panel-body -->
             <!/div>
           </div>
+          <form id="pencarian" method="POST" action="pengusaha_view.php">
           <div class="col-md-7">
             <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Pencarian...">
+                  <input type="text" class="form-control" name="filter" placeholder="Pencarian...">
                   <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-primary" type="button" onclick="$('#pencarian').submit();" name="cari">
                       <span class="glyphicon glyphicon-search" aria-hidden="true">  Cari</span>
                     </button>
                   </span>
             </div>
           </div>
+          </form>
         </div>
         <div class="row show-grid">
           <div class="col-md-12">
@@ -107,7 +109,13 @@
                   <?php
                   $link=koneksi_db();
 
-                  $sql="select * from pemilik_usaha order by nama";
+                  if(isset($_POST['filter'])){
+                  $cari = $_POST['filter'];
+                  $where="WHERE no_ktp like '%$cari%' OR nama like '%$cari%' OR alamat like '%$cari%' OR tpt_lahir like '%$cari%' OR tgl_lahir like '%$cari%' OR no_telp like '%$cari%' OR email like '%$cari%'";
+                  } else {
+                  $where=''; }
+                  
+                  $sql="select * from pemilik_usaha $where order by nama";
                   $res=mysql_query($sql,$link);
                   $banyakrecord=mysql_num_rows($res);
                   if($banyakrecord>0){

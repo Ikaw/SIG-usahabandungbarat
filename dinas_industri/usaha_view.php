@@ -53,14 +53,18 @@
                 </button>
               </a>
           </div>
+          <form id="pencarian" method="POST" action="usaha_view.php">
           <div class="col-md-7">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Pencarian...">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>   Cari</button>
-              </span>
+                  <input type="text" class="form-control" name="filter" placeholder="Pencarian...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" onclick="$('#pencarian').submit();" name="cari">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true">  Cari</span>
+                    </button>
+                  </span>
             </div>
           </div>
+          </form>
         </div>
         <div class="row show-grid">
           <div class="col-md-12">
@@ -71,7 +75,15 @@
                 <div class="table-responsive">
                   <?php
                   $link=koneksi_db();
-                        $sql="select * from data_usaha order by nama_usaha";
+
+                  if(isset($_POST['filter'])){
+                    $cari = $_POST['filter'];
+                    $where="WHERE id_usaha like '%$cari%' OR nama_usaha like '%$cari%' OR produk_utama like '%$cari%' OR alamat_usaha like '%$cari%' OR skala like '%$cari%'
+                            OR aktivasi like '%$cari%' OR no_ktp like '%$cari%'";
+                    } else {
+                    $where=''; }
+
+                        $sql="select * from data_usaha $where order by nama_usaha";
                         $res=mysql_query($sql,$link);
                         $banyakrecord=mysql_num_rows($res);
                         if($banyakrecord>0){

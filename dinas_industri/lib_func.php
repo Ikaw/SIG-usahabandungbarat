@@ -223,7 +223,9 @@ function dashboard(){?>
               </div>
             </div>
             <div class="panel-footer">
-              <span>Lihat Selengkapnya</span>
+              <a href="pengusaha_view.php">
+                <span> Lihat Selengkapnya</span>
+              </a>
               <div class="clearfix"></div>
             </div>
           </div>
@@ -252,7 +254,9 @@ function dashboard(){?>
               </div>
             </div>
             <div class="panel-footer">
-              <span>Lihat Selengkapnya</span>
+              <a href="usaha_view.php">
+                <span> Lihat Selengkapnya</span>
+              </a>
               <div class="clearfix"></div>
             </div>
           </div>

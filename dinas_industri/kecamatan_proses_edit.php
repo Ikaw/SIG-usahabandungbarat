@@ -49,10 +49,9 @@
               <div class="alert alert-success" role="alert">Data berhasil di ubah</div>
             <?php
             } 
-            else {
-              echo "Gagal Broh !!!";
-            }               
-        ?>
+            else {?>
+              <div class="alert alert-success" role="alert">Ubah Data Kecamatan Gagal!!!</div>
+            }
       </div>
     </div>
   </div>

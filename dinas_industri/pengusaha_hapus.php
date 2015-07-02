@@ -55,10 +55,9 @@
                     if ($res) {?>
                       <div class="alert alert-success" role="alert">Data Pengusaha Berhasil Dihapus !!</div>
                     <?php } 
-                    else {
-                      echo "Gagal Broh !!!";
+                    else { ?>
+                      <div class="alert alert-success" role="alert">Hapus Data Pengusaha Gagal!!!</div>
                     }
-        ?>
       </div>
     </div>
   </div>

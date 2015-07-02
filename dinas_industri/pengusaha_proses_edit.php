@@ -37,16 +37,6 @@
         <a href="logout.php" class="list-group-item"><font color="blue"><b>LOGOUT</b></font></a>
       </div>
     </div>
-      <div align="right" class="col-md-4">
-        <div class="list-group" align="center">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Pencarian...">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="button">Cari</button>
-            </span>
-          </div>
-        </div>
-      </div>
       <div class="col-md-9">
         <?php
           $link = koneksi_db();
