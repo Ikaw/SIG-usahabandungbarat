@@ -23,7 +23,6 @@ function koneksi_db(){
     {
         koneksi_db();
         $query = "SELECT * FROM data_usaha WHERE id_$kategori = '$keyword' ";
-        echo $query;
         $result = mysql_query($query);
         if(!$result)
         {
